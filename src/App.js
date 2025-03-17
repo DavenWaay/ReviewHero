@@ -1,11 +1,8 @@
-import SignupPage from "./pages/SignupPage";
+import React from "react";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
-  return (
-    <div>
-      <SignupPage />
-    </div>
-  );
+  return <LandingPage />;
 }
 
 export default App;

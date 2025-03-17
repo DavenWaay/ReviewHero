@@ -1,0 +1,8 @@
+:root {
+  --primary-color: #4CAF50;   /* ✅ Green */
+  --secondary-color: #27ae60; /* ✅ Dark Green */
+  --accent-color: #F0F0F0;    /* ✅ Light Gray */
+  --text-color: #000000;      /* ✅ Black */
+  --card-bg: #FFFFFF;         /* ✅ White */
+  --button-bg: #E0E0E0;       /* ✅ Light Gray */
+}
