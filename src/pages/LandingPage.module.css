@@ -1,10 +1,84 @@
 .container {
     display: flex;
+    margin-left: 273px;
   }
   
+  .quizCardsContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    align-items: stretch; 
+}
+
+
+  
   .content {
-    margin-left: 250px; /* Same width as the sidebar */
-    padding: 20px;
+    height:100vh;
     flex: 1;
+    background-color: var(--accent-color);
+  }
+  
+  .topbar {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Push search and profile apart */
+    padding: 10px 20px;
+    border-bottom: 2px solid #ddd;
+    background-color: var(--accent-color);
+  }
+  
+  .searchInput {
+    flex: 1; /* Allow it to take up available space */
+    max-width: 300px; /* Limit width */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center; /* Align text & image */
+    gap: 10px; /* Space between image and name */
+  }
+  
+  .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .userName {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .welcomeCard {
+    width: 95%;
+    height: 80px;
+    background-color: var(--primary-color);
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+  
+  .welcomeCard span {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+  }
+  
+  .welcomeCard h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0 0;
+    color: white;
   }
   
