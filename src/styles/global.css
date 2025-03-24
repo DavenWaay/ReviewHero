@@ -2,7 +2,7 @@
   --primary-color: #4CAF50;   /* ✅ Green */
   --secondary-color: #27ae60; /* ✅ Dark Green */
   --accent-color:rgb(245, 245, 245);    /* ✅ Light Gray */
-  --text-color: #000000;      /* ✅ Black */
+  --text-color:rgb(243, 241, 241);      /* ✅ Black */
   --card-bg: #FFFFFF;         /* ✅ White */
   --button-bg: #E0E0E0;       /* ✅ Light Gray */
 }

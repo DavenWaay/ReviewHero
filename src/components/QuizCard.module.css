@@ -1,7 +1,6 @@
 .cardContainer {
-    width: 300px; /* Adjust if needed */
-    height:200px;
-    background: var(--card-bg);
+    flex: 0 1 300px; /* Allows resizing */
+    height: 200px;
     border-radius: 20px;
     padding: 15px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -9,8 +8,9 @@
     flex-direction: column;
     gap: 10px;
     margin: 8px;
-    
-}
+  }
+  
+  
 
 .top {
     display: flex;

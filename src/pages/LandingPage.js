@@ -1,41 +1,64 @@
 import React from "react";
-import quizzes from "./data"; 
+import quizzes from "./data"; // Ensure correct path
 import SideBar from "../components/SideBar";
 import QuizCard from "../components/QuizCard";
 import styles from "./LandingPage.module.css";
-import "../styles/global.css";
+import global from "../styles/global.css";
 
 const LandingPage = () => {
   return (
     <div className={styles.container}>
-      <SideBar />
-      <div className={styles.content}>
-        {/* Top Bar */}
-        <div className={styles.topbar}>
-          <input type="text" placeholder="Search..." className={styles.searchInput} />
-          <div className={styles.profile}>
-            <img src="/logo192.png" alt="Profile" /> {/* ✅ Fixed img path */}
-            <span className={styles.userName}>Jhayvot G.</span>
+      < SideBar/>
+          <div className={styles.main}>
+            <div className={styles.topBar}>
+              <input type="text" placeholder="Search..." className={styles.searchInput} />
+              <div className={styles.profile}>
+                <img src="./logo192.png" alt="Profile" className={styles.profilePic} />
+                <span className={styles.userName}>Jhayvot G.</span>
+              </div>
           </div>
+          <hr />
+          <div className={styles.welcomeCard}>
+              <span>Good Day!</span>
+              <h1>Ready to Study, Jhayvot?</h1>
+          </div>
+          
+          <h3 className={styles.sectionTitle}>Recent Study Sets</h3>
+          <div className={styles.quizSection}>
+            {quizzes.map((quiz) => (
+                <QuizCard
+                  key={quiz.id}
+                title={quiz.title}
+                description={quiz.description}
+                author={quiz.author}
+                items={quiz.items}
+              />
+            ))}
+          </div>
+          <h3 className={styles.sectionTitle}>Second Section</h3>
+          <div className={styles.quizSection}>
+            {quizzes.map((quiz) => (
+                <QuizCard
+                  key={quiz.id}
+                title={quiz.title}
+                description={quiz.description}
+                author={quiz.author}
+                items={quiz.items}
+              />
+            ))}
         </div>
-
-        {/* Welcome Card */}
-        <div className={styles.welcomeCard}>
-          <span>Good Day!</span>
-          <h1>Ready to Study, Jhayvot?</h1>
-        </div>
-
-        {/* Quiz Cards */}
-        <div className={styles.quizCardsContainer}>
-          {quizzes.map((quiz) => (
-            <QuizCard
-              key={quiz.id}
-              title={quiz.title}
-              description={quiz.description}
-              author={quiz.author}
-              items={quiz.items}
-            />
-          ))}
+          
+        <h3 className={styles.sectionTitle}>Third Section</h3>
+        <div className={styles.quizSection}>
+            {quizzes.map((quiz) => (
+                <QuizCard
+                  key={quiz.id}
+                title={quiz.title}
+                description={quiz.description}
+                author={quiz.author}
+                items={quiz.items}
+              />
+            ))}
         </div>
       </div>
     </div>

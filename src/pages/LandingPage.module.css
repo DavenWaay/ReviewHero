@@ -1,84 +1,103 @@
 .container {
-    display: flex;
-    margin-left: 273px;
-  }
-  
-  .quizCardsContainer {
-    display: flex;
-    gap: 20px;
-    justify-content: center; 
-    flex-wrap: wrap; 
-    align-items: stretch; 
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 
-  
-  .content {
-    height:100vh;
-    flex: 1;
-    background-color: var(--accent-color);
-  }
-  
-  .topbar {
-    display: flex;
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Push search and profile apart */
-    padding: 10px 20px;
-    border-bottom: 2px solid #ddd;
-    background-color: var(--accent-color);
-  }
-  
-  .searchInput {
-    flex: 1; /* Allow it to take up available space */
-    max-width: 300px; /* Limit width */
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center; /* Align text & image */
-    gap: 10px; /* Space between image and name */
-  }
-  
-  .profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .userName {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .welcomeCard {
-    width: 95%;
-    height: 80px;
-    background-color: var(--primary-color);
-    padding: 15px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 10px;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-  
-  .welcomeCard span {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 400;
-    color: white;
-  }
-  
-  .welcomeCard h1 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 5px 0 0;
-    color: white;
-  }
-  
+
+/* Main content */
+.main {
+  flex: 1; /* This ensures it takes the remaining space */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* TopBar */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Search Bar */
+.searchInput {
+  flex: 1; /* Allows it to take up available space */
+  max-width: 300px; /* Prevents it from stretching too much */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+/* Profile Section */
+.profile {
+  display: flex;
+  align-items: center; /* Aligns image and text */
+  gap: 10px; /* Adds space between image and name */
+}
+
+/* Profile Image */
+.profilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Username */
+.userName {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+hr {
+  border: none; /* Remove default border */
+  height: 2px; /* Set thickness */
+  background-color: rgb(228, 228, 228); /* Change color */
+  margin: 10px auto 0; /* Adds space at the top */
+  width: 97%;
+  padding-top:
+}
+
+
+.welcomeCard {
+  width: 94%;
+  max-width: 1100px; /* Prevents it from stretching too much */
+  padding: 15px;
+  margin: 10px auto 0; /* Adds space at the top */
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+.quizSection {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap if screen is small */
+  gap: 2px; /* Adds spacing between cards */
+  justify-content: flex-start; /* Aligns to the left */
+  padding: 20px;
+  margin-top: 0px;
+}
+
+
+
+.quizCard {
+  width: 250px; /* Adjust based on your design */
+  max-width: 100%;
+}
+
+.sectionTitle {
+  padding-left: 40px;
+  margin-bottom: 0;
+}
+
