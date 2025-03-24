@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./SideBar.module.css";
 import "../styles/global.css";
+import "boxicons/css/boxicons.min.css";
+import { Link } from "react-router-dom";
+
 
 const SideBar = () => {
   return (
@@ -14,7 +17,7 @@ const SideBar = () => {
 
             <nav className={styles.links}>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><Link to="/">Home</Link></li>
                     <li><a href="#">Study Sets</a></li>
                     <li><a href="#">Folders</a></li>
                     <li><a href="#">Classes</a></li>
