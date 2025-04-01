@@ -56,7 +56,7 @@
     font-size: 15px;
     font-weight: bold;
 }
-.btnGreenF:hover , .btnGreenL:hover , .btnGreenQ:hover  {
+.btnGreenF:hover , .btnGreenL:hover , .btnGreenQ:hover, .btnPrev:hover,.btnNext:hover {
     background: #388e3c;
 }
 .FlashCard {
@@ -72,5 +72,71 @@
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
+
+.btnPrev , .btnNext {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 50px;
+  height: 2.2rem;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures spacing between sections */
+  width: 100%;
+  padding: 10px 20px;
+}
+
+/* Center Navigation Buttons */
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.btnPrev:hover, .btnNext:hover {
+  border-color: white;
+}
+
+/* Side Buttons (Right) */
+.sideBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sideBtn button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Adjust based on need */
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sideBtn button:hover {
+  border-color: white;
+}
+
+
+
+
 
 
