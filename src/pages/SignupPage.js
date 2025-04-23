@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./SignupPage.module.css";
 import InputField from "../components/InputField";
 import FeatureCard from "../components/FeatureCard";
+import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
   return (
@@ -17,7 +18,7 @@ const SignUpPage = () => {
         <InputField label="Confirm Password" type="password" icon="🔑" />
 
         <button className={styles.signupButton}>Create Account</button>
-        <p>Already have an account? <a href="#">Login Here</a></p>
+        <p>Already have an account? <Link to="/landing">Login Here</Link></p>
       </div>
 
       {/* Right Side - Features */}

@@ -17,8 +17,8 @@ const SideBar = () => {
 
             <nav className={styles.links}>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><a href="#">Study Sets</a></li>
+                    <li><Link to="/landing">Home</Link></li>
+                    <li><a href="/studysets">Study Sets</a></li>
                     <li><a href="#">Folders</a></li>
                     <li><a href="#">Classes</a></li>
                     <li><a href="#">Achievements</a></li>
