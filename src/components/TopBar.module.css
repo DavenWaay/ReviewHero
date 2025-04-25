@@ -1,3 +1,5 @@
+
+
 /* TopBar */
 .topBar {
     display: flex;
@@ -5,7 +7,7 @@
     justify-content: space-between;
     padding: 10px 20px;
     background-color: var(--accent-color);
-    width: 80.4%;
+    width: 80%;
     box-sizing: border-box;
     position: fixed;
     top: 0;

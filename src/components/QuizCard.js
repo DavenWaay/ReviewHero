@@ -10,11 +10,15 @@ const QuizCard = ({ title, description, author, items }) => {
     navigate("/quizpage");
   };
 
+  const handleFlashClick = () => {
+    navigate("/flashcards"); 
+  };
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.top}>
         <span>{items} Items</span>
-        <span>⭐</span>
+        <i class='bx bxs-star-half' ></i>
       </div>
 
       <div className={styles.mainContent}>
@@ -22,9 +26,8 @@ const QuizCard = ({ title, description, author, items }) => {
         <p>{description}</p>
         <p>Created by: {author}</p>
       </div>
-
       <div className={styles.bottom}>
-        <button className={styles.btnGreenF}>Flashcard</button>
+        <button className={styles.btnGreenF} onClick={handleFlashClick}>Flashcard</button>
         <button className={styles.btnGreenL}>Learn</button>
         <button className={styles.btnGreenQ} onClick={handleQuizClick}>
           Quiz

@@ -1,0 +1,49 @@
+.card {
+    display: flex;
+    align-items: center;
+    background-color:rgb(6, 143, 68);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    list-style: none;
+    color: white;
+    position: relative;
+    gap: 1rem;
+  }
+  
+  .term {
+    flex: 1;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  .separator {
+    width: 1px;
+    height: 100%;
+    background-color: white;
+  }
+  
+  .definition {
+    flex: 3;
+    word-break: break-word;
+    font-size: 0.95rem;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  .actions i {
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .actions i:hover {
+    color: var(--accent-color); /* or use any highlight color you want */
+  }
+  
