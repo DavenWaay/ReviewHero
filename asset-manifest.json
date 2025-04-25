@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ReviewHero/static/css/main.d9f188b2.css",
-    "main.js": "/ReviewHero/static/js/main.d73e4cbb.js",
+    "main.css": "/ReviewHero/static/css/main.8abcf1ae.css",
+    "main.js": "/ReviewHero/static/js/main.37cf058c.js",
     "static/media/boxicons.svg": "/ReviewHero/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
     "static/media/boxicons.eot": "/ReviewHero/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/boxicons.woff": "/ReviewHero/static/media/boxicons.d12afc36557395143e4b.woff",
     "static/media/boxicons.ttf": "/ReviewHero/static/media/boxicons.db9ddb1898dbd76badca.ttf",
     "static/media/boxicons.woff2": "/ReviewHero/static/media/boxicons.df635aaf04cd75132f62.woff2",
     "index.html": "/ReviewHero/index.html",
-    "main.d9f188b2.css.map": "/ReviewHero/static/css/main.d9f188b2.css.map",
-    "main.d73e4cbb.js.map": "/ReviewHero/static/js/main.d73e4cbb.js.map"
+    "main.8abcf1ae.css.map": "/ReviewHero/static/css/main.8abcf1ae.css.map",
+    "main.37cf058c.js.map": "/ReviewHero/static/js/main.37cf058c.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9f188b2.css",
-    "static/js/main.d73e4cbb.js"
+    "static/css/main.8abcf1ae.css",
+    "static/js/main.37cf058c.js"
   ]
 }
