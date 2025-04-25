@@ -1,0 +1,85 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(241, 241, 241);
+  height: 100vh;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 1rem;
+  background-color: rgb(14, 206, 110);
+  margin: 0; /* Make sure there's no margin below */
+  color: white;
+}
+
+.topBar h1 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.spacer {
+  width: 40px; /* To match the width of the 'x' span */
+}
+
+.topBar span {
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  text-align: right;
+}
+
+/* Optional: Style the HR to make it look cleaner */
+hr {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 200px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.middle {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+  justify-content: center;
+  flex: 1;
+}
+
+.rightBtn {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 2rem;
+  justify-content: flex-end;
+}
+
+i {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+i:hover {
+  transform: scale(1.2);
+}
