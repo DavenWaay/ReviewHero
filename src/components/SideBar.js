@@ -1,30 +1,66 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./SideBar.module.css";
 import "../styles/global.css";
 import "boxicons/css/boxicons.min.css";
-import { Link } from "react-router-dom";
-
 
 const SideBar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.container}>
         <div className={styles.logo}>
-                <img src="/reviewhero.png" alt="Review Hero Logo" /> 
-                <span>Review Hero</span>
-                </div>
-            </div>
+          <img src="/reviewhero.png" alt="Review Hero Logo" /> 
+          <span>Review Hero</span>
+        </div>
+      </div>
 
-            <nav className={styles.links}>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><a href="#">Study Sets</a></li>
-                    <li><a href="#">Folders</a></li>
-                    <li><a href="#">Classes</a></li>
-                    <li><a href="#">Achievements</a></li>
-                </ul>
-            </nav>
-            <button className={styles.createButton}>+ Create Study Set</button>
+      <nav className={styles.links}>
+        <ul>
+          <li>
+            <NavLink 
+              to="/landing" 
+              className={({ isActive }) => 
+                `${styles.link} ${isActive ? styles.activeLink : ""}`
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/studysets" 
+              className={({ isActive }) => 
+                `${styles.link} ${isActive ? styles.activeLink : ""}`
+              }
+            >
+              Study Sets
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/folders" 
+              className={({ isActive }) => 
+                `${styles.link} ${isActive ? styles.activeLink : ""}`
+              }
+            >
+              Folders
+            </NavLink>
+          </li>
+          
+          <li>
+            <NavLink 
+              to="/achievements" 
+              className={({ isActive }) => 
+                `${styles.link} ${isActive ? styles.activeLink : ""}`
+              }
+            >
+              Achievements
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+
+      <button className={styles.createButton}>+ Create Study Set</button>
     </div>
   );
 };
