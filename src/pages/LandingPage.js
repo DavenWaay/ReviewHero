@@ -1,6 +1,7 @@
 import React from "react";
 import quizzes from "./data"; // Ensure correct path
 import SideBar from "../components/SideBar";
+import 'boxicons/css/boxicons.min.css';
 import TopBar from "../components/TopBar";
 import QuizCard from "../components/QuizCard";
 import styles from "./LandingPage.module.css";

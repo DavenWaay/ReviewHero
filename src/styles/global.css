@@ -6,3 +6,7 @@
   --card-bg: #FFFFFF;         /*  White */
   --button-bg: #E0E0E0;       /*  Light Gray */
 }
+
+i.bx, i[class*="bx-"] {
+  position: static !important; /* force icons to be normal */
+}

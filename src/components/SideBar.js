@@ -9,7 +9,7 @@ const SideBar = () => {
     <div className={styles.sidebar}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img src="/reviewhero.png" alt="Review Hero Logo" /> 
+          <img src={process.env.PUBLIC_URL + "/reviewhero.png"} alt="Review Hero Logo" />
           <span>Review Hero</span>
         </div>
       </div>
