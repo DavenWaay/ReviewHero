@@ -4,6 +4,16 @@ import './index.css';
 import App from './App';
 import "./styles/global.css";
 
+// ── START: BOXICONS POSITION OVERRIDE ────────────────
+const bxOverride = document.createElement('style');
+bxOverride.innerHTML = `
+  /* Force all Boxicons <i> tags back into normal flow */
+  i.bx, i[class*="bx-"] {
+    position: static !important;
+  }
+`;
+document.head.appendChild(bxOverride);
+// ── END: BOXICONS POSITION OVERRIDE ──────────────────
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,8 +21,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
