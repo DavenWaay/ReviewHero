@@ -38,12 +38,12 @@ const SideBar = () => {
           </li>
           <li>
             <NavLink 
-              to="/folders" 
+              to="/library" 
               className={({ isActive }) => 
                 `${styles.link} ${isActive ? styles.activeLink : ""}`
               }
             >
-              Folders
+              Library
             </NavLink>
           </li>
           
