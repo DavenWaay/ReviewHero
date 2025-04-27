@@ -21,7 +21,7 @@ const SideBar = () => {
                     <li><a href="/studysets">Study Sets</a></li>
                     <li><a href="#">Folders</a></li>
                     <li><a href="#">Classes</a></li>
-                    <li><a href="#">Achievements</a></li>
+                    <li><a href="/achievements">Achievements</a></li>
                 </ul>
             </nav>
             <button className={styles.createButton}>+ Create Study Set</button>

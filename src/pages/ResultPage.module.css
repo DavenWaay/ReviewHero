@@ -1,0 +1,48 @@
+.resultContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .resultCard {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+  }
+  
+  .progressBar {
+    width: 100%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #00C851;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  
+  .returnButton {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #007E33;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .returnButton:hover {
+    background-color: #005826;
+  }
+  

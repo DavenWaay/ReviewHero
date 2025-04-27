@@ -1,105 +1,71 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate from react-router-dom
-import styles from './QuizPage.module.css'; // Import the styles module
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import styles from "./QuizPage.module.css";
 
 const questions = [
-  { question: "What is the capital of France?", options: ["Paris", "Rome", "Berlin", "Madrid"], correct: "Paris" },
-  { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], correct: "4" },
-  { question: "What is the boiling point of water?", options: ["90°C", "100°C", "110°C", "120°C"], correct: "100°C" },
-  { question: "Which planet is known as the Red Planet?", options: ["Mars", "Venus", "Earth", "Saturn"], correct: "Mars" },
-  { question: "What is the largest ocean on Earth?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], correct: "Pacific" },
+  { question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], answer: "Paris" },
+  { question: "What is 2 + 2?", options: ["3", "4", "5", "22"], answer: "4" },
+  { question: "What color is the sky?", options: ["Green", "Blue", "Red", "Yellow"], answer: "Blue" }
 ];
 
-export const QuizPage = () => {
-  const navigate = useNavigate();  // Initialize useNavigate for navigation
+const QuizPage = () => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
 
-  const handleAnswerClick = (answer) => {
-    if (answer === questions[currentQuestion].correct) {
-      setScore(score + 1);
-    }
-    const next = currentQuestion + 1;
-    if (next < questions.length) {
-      setCurrentQuestion(next);
-    } else {
-      setShowScore(true);
-    }
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
-  const percentage = (score / questions.length) * 100;
-  const progressWidth = ((currentQuestion + (showScore ? 1 : 0)) / questions.length) * 100;
+  const handleAnswerClick = (selectedOption) => {
+    if (selectedOption === questions[currentQuestion].answer) {
+      setScore(score + 1);
+    }
+
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        navigate("/result", { state: { score: score + 1, total: questions.length } });
+      }
+    }, 300); // small delay for animation feel
+  };
+
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.main}>
-        <hr />
-        <div className={styles.quizContainer}>
-          <h1 className={styles.quizTitle}>Quiz</h1>
-          
-          {/* X button on the top-right for navigation */}
-          <button 
-            className={styles.closeButton} 
-            onClick={() => navigate("/")} // Redirect to LandingPage.js
-          >
-            ×
-          </button>
-          
-          {!showScore && (
-            <div className={styles.progressBarContainer}>
-              <div
-                className={styles.progressBarFill}
-                style={{ width: `${progressWidth}%` }}
-              ></div>
-            </div>
-          )}
-          <div className={styles.quizBox}>
-            {showScore ? (
-              <div className={styles.resultBox}>
-                <div className={styles.scoreCircle}>
-                  <div className={styles.scoreContent}>
-                    <div className={styles.scoreNumber}>{score}/{questions.length}</div>
-                    <div className={styles.scoreText}>Correct</div>
-                  </div>
-                </div>
-                <div className={styles.resultText}>
-                  <h3>You got {score}/{questions.length}</h3>
-                  <p>+{Math.round(percentage)} points! You answered {score} out of {questions.length} questions correctly!</p>
-                </div>
-                <div className={styles.resultButtons}>
-                  <button 
-                    className={styles.quizButton}
-                    onClick={() => {
-                      setCurrentQuestion(0);
-                      setScore(0);
-                      setShowScore(false);
-                    }}
-                  >
-                    Take another quiz
-                  </button>
-                  <button className={styles.quizButtonSecondary}>Review Flashcards</button>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.questionBox}>
-                <h3 className={styles.questionText}>{questions[currentQuestion].question}</h3>
-                <div className={styles.optionsBox}>
-                  {questions[currentQuestion].options.map((option, idx) => (
-                    <button
-                      key={idx}
-                      className={styles.optionButton}
-                      onClick={() => handleAnswerClick(option)}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+    <div className={styles.quizContainer}>
+      <button className={styles.closeButton} onClick={handleGoBack}>✕</button>
+
+      <div className={styles.progressBar}>
+        <div className={styles.progressFill} style={{ width: `${progress}%` }} />
       </div>
+
+      <motion.div
+        className={styles.quizWindow}
+        key={currentQuestion}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className={styles.questionArea}>
+          <h2>{questions[currentQuestion].question}</h2>
+        </div>
+
+        <div className={styles.optionsArea}>
+          {questions[currentQuestion].options.map((option, index) => (
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              key={index}
+              className={styles.optionBtn}
+              onClick={() => handleAnswerClick(option)}
+            >
+              {option}
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 };

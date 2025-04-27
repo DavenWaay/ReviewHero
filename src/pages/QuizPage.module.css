@@ -1,189 +1,89 @@
-.container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: relative; /* Set the container position to relative */
-  }
-  
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 100%;
-  }
-  
-  hr {
-    border: none;
-    height: 2px;
-    background-color: rgb(228, 228, 228);
-    margin: 68px auto 0;
-    width: 97%;
-    padding-top: 2px;
-  }
-  
-  .quizContainer {
-    max-width: 1048px;
-    margin: 2rem auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .quizTitle {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 29px;
-    font-weight: bold;
-    margin-bottom: 2rem;
-  }
-  
-  .progressBarContainer {
-    width: 100%;
-    height: 16px;
-    background-color: #f0f0f0;
-    border-radius: 7.85px;
-    margin: 2rem 0;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-  }
-  
-  .progressBarFill {
-    height: 100%;
-    background-color: #5eaa61;
-    transition: width 0.3s ease;
-  }
-  
-  .quizBox {
-    background: white;
-    border-radius: 7.85px;
-    padding: 3.5rem;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .questionText {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 3rem;
-  }
-  
-  .optionsBox {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3.5rem;
-    margin-top: 3rem;
-  }
-  
-  .optionButton {
-    height: 50px;
-    background: #5eaa61;
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 7.85px;
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 21px;
-    font-weight: 600;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.2s;
-  }
-  
-  .optionButton:hover {
-    background: #4d9050;
-  }
-  
-  .resultBox {
-    text-align: center;
-  }
-  
-  .scoreCircle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: #5eaa61;
-    margin: 0 auto 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-  
-  .scoreContent {
-    text-align: center;
-  }
-  
-  .scoreNumber {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 36px;
-    font-weight: bold;
-  }
-  
-  .scoreText {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 18px;
-  }
-  
-  .resultText {
-    margin: 2rem 0;
-  }
-  
-  .resultText h3 {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .resultText p {
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .resultButtons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  .quizButton {
-    background: #5eaa61;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 7.85px;
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 18px;
-    font-weight: 600;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
-  }
-  
-  .quizButtonSecondary {
-    background: white;
-    color: #5eaa61;
-    padding: 0.75rem 1.5rem;
-    border-radius: 7.85px;
-    font-family: 'Baloo 2', Helvetica;
-    font-size: 18px;
-    font-weight: 600;
-    border: 2px solid #5eaa61;
-  }
-  
-  .quizButton:hover,
-  .quizButtonSecondary:hover {
-    opacity: 0.85;
-  }
-  
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 30px;
-    background: none;
-    border: none;
-    color: black;
-    cursor: pointer;
-  }
-  
+.quizContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+  z-index: 10;
+}
+
+.progressBar {
+  width: 90%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #00C851;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.quizWindow {
+  width: 400px;
+  height: 500px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.questionArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.questionArea h2 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin: 0;
+}
+
+.optionsArea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.optionBtn {
+  padding: 12px;
+  background-color: #00C851;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.optionBtn:hover {
+  background-color: #007E33;
+}

@@ -4,12 +4,16 @@ import FlashCard from "./pages/FlashCard";
 import SignupPage from "./pages/SignupPage";
 import QuizPage from "./pages/QuizPage";
 import StudySetsPage from "./pages/StudySetsPage";
+import ResultPage from "./pages/ResultPage";
+import AchievementsPage from "./pages/AchievementsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/achievements" element={<AchievementsPage />} />
+        <Route path="/result" element={<ResultPage />} />
         <Route path="/landing" element={<LandingPage />} />  
         <Route path="/" element={<LandingPage />} />  
         <Route path="/signup" element={<SignupPage />} />  
