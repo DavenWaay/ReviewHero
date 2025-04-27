@@ -10,6 +10,7 @@ import StudySetsPage from "./pages/StudySetsPage";
 import ResultPage from "./pages/ResultPage";
 import AchievementsPage from "./pages/AchievementsPage";
 import CreateFlashCard from "./pages/CreateFlashCard";
+import LearnPage from "./pages/LearnPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage/>} />
         <Route path="/achievements" element={<AchievementsPage />} />
+        <Route path="/learn" element={<LearnPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />

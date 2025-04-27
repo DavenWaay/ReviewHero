@@ -1,112 +1,120 @@
 .container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgb(250, 250, 250);
-  }
-  
-  
-  
-  /* Main content */
-  .main {
-    flex: 1; /* This ensures it takes the remaining space */
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 100%;
-    width: 100%;
-    height: 100vh;
-    padding-bottom: 2rem;
-  }
-  
-
-  .content {
-    margin-left: 200px;
-    pading-left: 200px;
-  }
-  hr {
-    border: none; /* Remove default border */
-    height: 2px; /* Set thickness */
-    background-color: rgb(228, 228, 228); /* Change color */
-    margin: 65px auto 0; /* Adds space at the top */
-    width: 97%;
-    padding-top:
-  }
-
-  h2 {
-    color: black;
-    padding-left: 20px;
-  }
-
-  .btnContainer {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    gap: 35px; 
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgb(250, 250, 250);
 }
 
-  .btnGreenF,.btnGreenL,.btnGreenQ{
-    background: #4caf50;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-    width: 15rem;
-    height: 2.2rem;
-    font-size: 15px;
-    font-weight: bold;
-}
-.btnGreenF:hover , .btnGreenL:hover , .btnGreenQ:hover, .btnPrev:hover,.btnNext:hover {
-    background: #388e3c;
+/* Main content */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 2rem;
 }
 
-.btnPrev , .btnNext {
+.content {
+  margin-left: 200px;
+  pading-left: 200px;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: rgb(228, 228, 228);
+  margin: 65px auto 0;
+  width: 97%;
+}
+
+h2 {
+  color: black;
+  padding-left: 20px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+/* Green Buttons (Flashcard, Learn, Quiz) */
+.btnGreenF, .btnGreenL, .btnGreenQ {
   background: #4caf50;
   color: white;
   border: none;
+  padding: 8px 12px;
   border-radius: 15px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
-  width: 50px;
+  transition: 0.3s;
+  width: 15rem;
   height: 2.2rem;
-  font-size: 30px;
+}
+
+.btnGreenF:hover, .btnGreenL:hover, .btnGreenQ:hover {
+  background: #388e3c;
+}
+
+/* Prev/Next Buttons */
+.btnPrev, .btnNext {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  @keyframes bounceClick {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.85); }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); }
 }
 
+.btnPrev:active, .btnNext:active {
+  animation: bounceClick 0.4s ease;
+}
+
+.btnPrev:hover, .btnNext:hover {
+  background: #388e3c;
+}
+
+/* Section with buttons */
 .btnSection {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensures spacing between sections */
+  justify-content: space-between;
   width: 75%;
   padding: 10px 20px;
   margin-left: 145px;
 }
 
-/* Center Navigation Buttons */
 .navButtons {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-
-.btnPrev:hover, .btnNext:hover {
-  border-color: rgb(255, 255, 255);
-}
-
-/* Side Buttons (Right) */
+/* Side Buttons (Play, Shuffle, Settings, Fullscreen) */
 .sideBtn {
   display: flex;
   align-items: center;
   gap: 10px;
-  
 }
 
 .sideBtn button {
@@ -117,25 +125,25 @@
   height: 40px;
   border-radius: 50%;
   background: transparent;
-  border: 2px solid green; /* Makes the circle green */
-  color: green;            /* Makes the icon green */
+  border: 2px solid green;
+  color: green;
   font-size: 1.2rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
-
 .sideBtn button:hover {
-  border-color: rgb(0, 255, 34);
+  border-color: #00ff22;
 }
 
-
-/*Items at the bottom*/
+/* FlashCard Flip Animation */
 .FlashCardWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%; /* or a max-height if you want to limit it */
+  height: 100%;
+  perspective: 1000px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .FlashCard {
@@ -143,14 +151,38 @@
   height: 24rem;
   background: rgb(255, 255, 255);
   margin: 10px auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.FlashCard.flipped {
+  transform: rotateY(180deg);
+}
+
+.FlashCardContent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.FlashCardFront {
+  background-color: white;
+}
+
+.FlashCardBack {
+  background-color: #f0f0f0;
+  transform: rotateY(180deg);
 }
 
 .termDefiCardContainer {
@@ -163,7 +195,3 @@
   gap: 15px;
   margin-bottom: 50px;
 }
-
-
-
-
