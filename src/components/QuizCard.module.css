@@ -70,3 +70,8 @@
 .btnGreenF:hover , .btnGreenL:hover , .btnGreenQ:hover  {
     background: #388e3c;
 }
+
+.cardContainer i {
+    position: static !important;
+  }
+  
