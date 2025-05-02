@@ -29,14 +29,17 @@ const SignUpPage = () => {
         <FeatureCard
           title="Effective Learning"
           description="Our flashcard system is designed to optimize retention."
+          iconClass="bx bx-book-reader"
         />
         <FeatureCard
           title="Gamified Experience"
           description="Turn your studying into an adventure with quests and rewards."
+          iconClass="bx bx-dice-4"
         />
         <FeatureCard
           title="Community"
           description="Connect with fellow learners and compete on leaderboards."
+          iconClass="bx bx-male-female"
         />
       </div>
     </div>

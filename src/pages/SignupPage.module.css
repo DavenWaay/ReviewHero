@@ -10,6 +10,7 @@
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
+    height: 80%;
   }
   
   .signupForm h2 {
@@ -35,6 +36,7 @@
     color: white;
     padding: 2rem;
     border-radius: 8px;
+    height: 80%;
   }
 
   .features h2{

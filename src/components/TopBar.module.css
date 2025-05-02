@@ -2,19 +2,21 @@
 
 /* TopBar */
 .topBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: var(--accent-color);
-    width: 80%;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 250;
-    right: 0;
-    z-index: 1000; /* Ensures it's above other elements */
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  min-width: 1100px; /* This is the *smallest* it can shrink */
+  max-width: 100%;  /* Prevents it from overflowing parent */
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 265px; /* Assuming sidebar is 250px wide */
+  right: 0;
+  z-index: 1000;
+}
+
   
   
   /* Search Bar */
