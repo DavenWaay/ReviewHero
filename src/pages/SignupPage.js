@@ -18,7 +18,7 @@ const SignUpPage = () => {
         <InputField label="Confirm Password" type="password" icon="🔑" />
 
         <button className={styles.signupButton}>Create Account</button>
-        <p>Already have an account? <Link to="/landing">Login Here</Link></p>
+        <p>Already have an account? <Link to="/login"><span>Login Here</span></Link></p>
       </div>
 
       {/* Right Side - Features */}

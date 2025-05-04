@@ -12,14 +12,15 @@ import AchievementsPage from "./pages/AchievementsPage";
 import CreateFlashCard from "./pages/CreateFlashCard";
 import LearnPage from "./pages/LearnPage";
 import SignUpPage from "./pages/SignupPage";
-
+import Login from "./pages/Login";
 function App() {
   return (
     <Router basename="/ReviewHero">
       <Routes>
-        <Route path="/" element={<LandingPage/>} />
+        <Route path="/" element={<Login/>} />
         <Route path="/achievements" element={<AchievementsPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/landing" element={<LandingPage />} />

@@ -1,7 +1,7 @@
 .container {
     display: flex;
     height: 100vh;
-    background-color: #3a7d44;
+    background-color:rgb(40, 179, 61);
     padding: 2rem;
   }
   
@@ -20,9 +20,14 @@
   .signupForm p {
     margin-bottom: 20px;
   }
+
+  span {
+    text-decoration: none;
+    color: rgb(40, 179, 61);
+  }
   
   .signupButton {
-    background-color: #3a7d44;
+    background-color:rgb(40, 179, 61);
     color: white;
     border: none;
     padding: 10px;

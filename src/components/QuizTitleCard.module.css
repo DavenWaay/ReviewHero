@@ -1,11 +1,11 @@
 .container {
     width: 93%;
     margin: 10px auto;
-    background-color:rgb(84, 155, 116);         /* rich navy background */
+    background-color:rgb(84, 155, 116);      
     border-radius: 8px;                
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     padding: 12px 16px;
-    color: #fff;                        /* all text white by default */
+    color: #fff;                   
     display: flex;
     flex-direction: column;
     gap: 8px;

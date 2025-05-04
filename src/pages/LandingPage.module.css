@@ -9,7 +9,7 @@
 
 /* Main content */
 .main {
-  flex: 1; /* This ensures it takes the remaining space */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -17,10 +17,10 @@
 }
 
 hr {
-  border: none; /* Remove default border */
-  height: 2px; /* Set thickness */
-  background-color: rgb(228, 228, 228); /* Change color */
-  margin: 68px auto 0; /* Adds space at the top */
+  border: none; 
+  height: 2px;
+  background-color: rgb(228, 228, 228); 
+  margin: 68px auto 0; 
   width: 97%;
   padding-top: 2px;
 }
@@ -40,9 +40,9 @@ hr {
 
 .quizSection {
   display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap if screen is small */
-  gap: 2px; /* Adds spacing between cards */
-  justify-content: flex-start; /* Aligns to the left */
+  flex-wrap: wrap; 
+  gap: 2px; 
+  justify-content: flex-start;
   padding: 20px;
   margin-top: 0px;
 }
@@ -50,7 +50,7 @@ hr {
 
 
 .quizCard {
-  width: 250px; /* Adjust based on your design */
+  width: 250px; 
   max-width: 100%;
 }
 

@@ -28,9 +28,10 @@ const SideBar = () => {
   </div>
 
   {/* Logout button pinned to bottom */}
-      <NavLink to="/signup" className={styles.logoutButton}>
+      <NavLink to="/login" className={styles.logoutButton}>
         <i className='bx bx-exit'></i>Logout
       </NavLink>
+
 </div>
 
   );

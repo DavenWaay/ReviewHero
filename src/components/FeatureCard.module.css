@@ -42,7 +42,7 @@
   padding: 20px;
   margin: 0 auto 10px auto;
   font-size: 0.9rem;
-  display: flex; /* 👈 Make icon and text side by side */
+  display: flex;
   align-items: center;
   gap: 20px;
   color: white;

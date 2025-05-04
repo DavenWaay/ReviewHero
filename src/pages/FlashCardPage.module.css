@@ -12,7 +12,7 @@
   height: 60px;
   padding: 0 1rem;
   background-color: rgb(14, 206, 110);
-  margin: 0; /* Make sure there's no margin below */
+  margin: 0; 
   color: white;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .spacer {
-  width: 40px; /* To match the width of the 'x' span */
+  width: 40px; 
 }
 
 .topBar span {
@@ -34,7 +34,6 @@
   text-align: right;
 }
 
-/* Optional: Style the HR to make it look cleaner */
 hr {
   margin: 0;
   border: none;
