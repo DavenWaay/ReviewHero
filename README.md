@@ -48,7 +48,7 @@ Review Hero is a **flashcard-based website application** focused on reviewing te
 
 ## 📫 Contact Us  
 - ic.stephen.rodriguez@cvsu.edu.ph  
-- daven.waay18@gmail.com
+- davenwaay18@gmail.com
 - ic.gerwindean.alcober@cvsu.edu.ph  
 - ic.matthewmeinrad.quiling@cvsu.edu.ph  
 
