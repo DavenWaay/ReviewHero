@@ -6,6 +6,7 @@ A responsive and interactive **web-based application** designed to help users re
 ## 🔗 Live Demo  
 Check out the live version here:  
 👉 https://davenwaay.github.io/ReviewHero/
+📐 Optimized for screens 1366×768 and above.
 
 ---
 
