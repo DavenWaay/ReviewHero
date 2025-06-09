@@ -204,7 +204,7 @@ const StudySetsPage = () => {
             <p>Create your first study set to get started!</p>
             <button 
               className={styles.createButton}
-              onClick={() => navigate('/createflashcard')}
+              onClick={() => navigate('/createstudyset')}
             >
               Create Study Set
             </button>

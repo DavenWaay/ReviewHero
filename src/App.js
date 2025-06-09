@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 
@@ -33,7 +33,7 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   return (
-    <Router basename="/ReviewHero">
+    <Router>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />

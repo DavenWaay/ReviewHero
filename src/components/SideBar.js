@@ -1,10 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./SideBar.module.css";
 import "../styles/global.css";
 import "boxicons/css/boxicons.min.css";
 
 const SideBar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.container}>
@@ -62,7 +64,7 @@ const SideBar = () => {
 
       <button 
         className={styles.createButton} 
-        onClick={() => window.location.href = "/ReviewHero/createstudyset"}
+        onClick={() => navigate("/createstudyset")}
       >
         + Create Study Set
       </button>

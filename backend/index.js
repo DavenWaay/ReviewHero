@@ -12,7 +12,8 @@ const port = process.env.PORT || 5001;
 app.use(cors({
   origin: [
     'https://davenwaay.github.io',  // GitHub Pages domain
-    'http://localhost:3000'         // Local development
+    'http://localhost:3000',         // Local development
+    'https://davenwaay.github.io/ReviewHero' // GitHub Pages subpath
   ],
   credentials: true
 }));
@@ -68,6 +69,11 @@ mongoose.connect(mongoURI, {
 // Basic route
 app.get('/', (req, res) => {
   res.send('ReviewHero Backend is running');
+});
+
+// Add a catch-all route to handle unknown paths and avoid 404 on root
+app.all('*', (req, res) => {
+  res.status(404).send('Not Found');
 });
 
 // Start server
