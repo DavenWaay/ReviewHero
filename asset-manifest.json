@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ReviewHero/static/css/main.ccdda137.css",
-    "main.js": "/ReviewHero/static/js/main.f66534e0.js",
+    "main.js": "/ReviewHero/static/js/main.df13cfa1.js",
     "static/media/boxicons.svg": "/ReviewHero/static/media/boxicons.9e2b21b135bc7d4c803f.svg",
     "static/media/boxicons.eot": "/ReviewHero/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/boxicons.woff": "/ReviewHero/static/media/boxicons.d12afc36557395143e4b.woff",
@@ -9,10 +9,10 @@
     "static/media/boxicons.woff2": "/ReviewHero/static/media/boxicons.df635aaf04cd75132f62.woff2",
     "index.html": "/ReviewHero/index.html",
     "main.ccdda137.css.map": "/ReviewHero/static/css/main.ccdda137.css.map",
-    "main.f66534e0.js.map": "/ReviewHero/static/js/main.f66534e0.js.map"
+    "main.df13cfa1.js.map": "/ReviewHero/static/js/main.df13cfa1.js.map"
   },
   "entrypoints": [
     "static/css/main.ccdda137.css",
-    "static/js/main.f66534e0.js"
+    "static/js/main.df13cfa1.js"
   ]
 }
