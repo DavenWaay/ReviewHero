@@ -9,11 +9,28 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://davenwaay.github.io',  // GitHub Pages domain
+    'http://localhost:3000'         // Local development
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Firebase Admin initialization
-const serviceAccount = require('./firebase-service-account.json');
+let serviceAccount;
+try {
+  // Try to load from file (local development)
+  serviceAccount = require('./firebase-service-account.json');
+} catch (error) {
+  // Use environment variable (production deployment)
+  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+  } else {
+    throw new Error('Firebase service account not found. Please provide firebase-service-account.json file or FIREBASE_SERVICE_ACCOUNT environment variable.');
+  }
+}
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

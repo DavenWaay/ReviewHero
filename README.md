@@ -34,6 +34,9 @@ Review Hero is a **flashcard-based website application** focused on reviewing te
 - [Boxicons](https://boxicons.com/) – for UI icons  
 - [Framer Motion](https://www.framer.com/motion/) – for animations  
 - [Visual Studio Code](https://code.visualstudio.com/) – development environment  
+- [MongoDB](https://www.mongodb.com/) - for database
+- [Express](https://expressjs.com/) - for backend API
+- [Firebase](https://firebase.google.com/) - for authentication
 
 ---
 
@@ -56,15 +59,62 @@ Review Hero is a **flashcard-based website application** focused on reviewing te
 
 ## 🧪 Installation (For Local Development)
 
+### Frontend Setup
 ```bash
 # Clone the repository
 git clone https://github.com/DavenWaay/ReviewHero
 
 # Navigate into the folder
-cd review-hero
+cd ReviewHero
 
-# Install the dependencies
+# Install the frontend dependencies
 npm install
 
-# Start the development server
+# Create a .env file in the root directory with:
+REACT_APP_API_URL=http://localhost:5001/api
+
+# Start the frontend development server
 npm start
+```
+
+### Backend Setup
+```bash
+# Navigate to the backend folder
+cd backend
+
+# Install the backend dependencies
+npm install
+
+# Create a .env file in the backend directory with:
+MONGODB_URI=your_mongodb_connection_string
+PORT=5001
+
+# Get your Firebase service account key:
+# 1. Go to Firebase Console
+# 2. Project Settings > Service Accounts
+# 3. Generate New Private Key
+# 4. Save as 'firebase-service-account.json' in the backend folder
+
+# Start the backend development server
+npm run dev
+```
+
+### Important Notes for Team Members
+1. You need to set up your own MongoDB database:
+   - Create a free MongoDB Atlas account
+   - Create a new cluster
+   - Get your connection string
+   - Replace 'your_mongodb_connection_string' in backend/.env
+
+2. You need Firebase configuration:
+   - Get the firebase-service-account.json from the team lead
+   - Place it in the backend folder
+
+3. Make sure both frontend and backend servers are running:
+   - Frontend: http://localhost:3000
+   - Backend: http://localhost:5001
+
+4. Common Issues:
+   - If MongoDB connection fails, check your connection string and network access in MongoDB Atlas
+   - If Firebase auth fails, ensure firebase-service-account.json is properly placed
+   - If API calls fail, check if both servers are running and REACT_APP_API_URL is set correctly
