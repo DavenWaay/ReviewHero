@@ -6,10 +6,19 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; 
     align-items: center;
     box-shadow: 2px 0 5px rgba(0, 0, 0, .3);
     z-index: 100;
-}
+    
+  }
+  
+  .topContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
 
 .logo {
     display: flex;
@@ -33,19 +42,32 @@
 .links ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    
 }
 
 .link {
+    display: flex;              
+    align-items: center;      
+    gap: 40px;               
     text-decoration: none;
     color: #333;
     font-size: 16px;
     font-weight: 500;
-    display: block;
     padding: 17px;
     border-radius: 2px;
-    background-color:rgb(182, 243, 190); /* subtle green background */
+    background-color: rgb(182, 243, 190); 
     transition: background 0.3s ease, color 0.3s ease;
+    width: 90%;            
+    justify-content: flex-start; 
 }
+
+.link i {
+    font-size: 1.3rem;
+}
+
 
 /* Hover state */
 .link:hover {
@@ -55,7 +77,7 @@
 
 /*  Active link style */
 .activeLink {
-    background-color:rgb(7, 180, 79); /* stronger green */
+    background-color:rgb(7, 180, 79); 
     color: white;
 }
   
@@ -79,4 +101,32 @@
 
 .createButton:hover {
     background-color: #219150;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background-color: rgb(83, 83, 83);
+    border: 2px solid white;
+    border-radius: 5px;
+    height: 2.5rem;
+    width: 10rem;
+    cursor: pointer;
+    margin-bottom: 50px;
+    text-decoration: none;
+}
+
+.logoutButton i {
+    font-size: 1.2rem;
+}
+
+
+.logoutButton:hover {
+    background-color: rgb(41, 41, 41)
+    
 }

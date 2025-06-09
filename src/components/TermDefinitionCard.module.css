@@ -44,6 +44,6 @@
   }
   
   .actions i:hover {
-    color: var(--accent-color); /* or use any highlight color you want */
+    color: var(--accent-color); 
   }
   
