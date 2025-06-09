@@ -60,7 +60,12 @@ const SideBar = () => {
         </ul>
       </nav>
 
-      <button className={styles.createButton}>+ Create Study Set</button>
+      <button 
+        className={styles.createButton} 
+        onClick={() => window.location.href = "/ReviewHero/createstudyset"}
+      >
+        + Create Study Set
+      </button>
     </div>
   );
 };

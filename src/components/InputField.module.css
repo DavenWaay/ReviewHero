@@ -1,20 +1,54 @@
 .inputContainer {
     display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.inputWrapper {
+    display: flex;
     align-items: center;
     background: #f5f5f5;
     padding: 10px;
     border-radius: 4px;
-    margin-bottom: 15px;
-  }
-  
-  .icon {
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.inputWrapper:focus-within {
+    border-color: #4CAF50;
+}
+
+.inputContainer:has(.inputError) .inputWrapper {
+    border-color: #e74c3c;
+    background: #fef5f5;
+}
+
+.icon {
     margin-right: 10px;
-  }
-  
-  .input {
+    font-size: 1.2rem;
+}
+
+.input {
     border: none;
     outline: none;
     background: transparent;
     flex: 1;
-  }
+    font-size: 1rem;
+    padding: 5px 0;
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.inputError {
+    border-color: #e74c3c;
+}
+
+.errorMessage {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    margin-left: 5px;
+}
   

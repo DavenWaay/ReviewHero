@@ -193,4 +193,22 @@
     color: #555;
     margin-bottom: 30px;
   }
+
+  .loading,
+  .error,
+  .emptyState {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  .error {
+    color: #e74c3c;
+  }
+
+  .emptyState {
+    color: #95a5a6;
+  }
   

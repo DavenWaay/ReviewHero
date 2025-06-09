@@ -1,24 +1,93 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "./QuizPage.module.css";
-
-const questions = [
-  { question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], answer: "Paris" },
-  { question: "What is 2 + 2?", options: ["3", "4", "5", "22"], answer: "4" },
-  { question: "What color is the sky?", options: ["Green", "Blue", "Red", "Yellow"], answer: "Blue" }
-];
+import { flashcardAPI } from "../services/api";
 
 const QuizPage = () => {
   const navigate = useNavigate();
+  const { setId } = useParams();
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const shuffleOptions = (options) => {
+    return options.sort(() => Math.random() - 0.5);
+  };
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        setLoading(true);
+        
+        if (!setId) {
+          // Fallback: use static questions if no setId provided
+          const staticQuestions = [
+            {
+              question: "What is React?",
+              options: ["A JavaScript library", "A database", "A server", "An operating system"],
+              answer: "A JavaScript library"
+            },
+            {
+              question: "What does JSX stand for?",
+              options: ["JavaScript XML", "Java Syntax Extension", "JSON XML", "JavaScript Extension"],
+              answer: "JavaScript XML"
+            },
+            {
+              question: "What is a component in React?",
+              options: ["A reusable piece of UI", "A database table", "A server endpoint", "A CSS file"],
+              answer: "A reusable piece of UI"
+            }
+          ];
+          setQuestions(staticQuestions);
+          setError(null);
+          setLoading(false);
+          return;
+        }
+
+        const response = await flashcardAPI.getFlashcardSet(setId);
+        if (response.data && response.data.cards) {
+          // Map flashcards to quiz questions format
+          const quizQuestions = response.data.cards.map(card => {
+            // Generate some fake options for multiple choice
+            const fakeOptions = [
+              "Alternative answer 1",
+              "Alternative answer 2", 
+              "Alternative answer 3"
+            ];
+            const allOptions = [card.definition, ...fakeOptions];
+            
+            return {
+              question: card.term,
+              options: shuffleOptions(allOptions),
+              answer: card.definition
+            };
+          });
+          setQuestions(quizQuestions);
+        } else {
+          setQuestions([]);
+        }
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching quiz questions:", err);
+        setError("Failed to load quiz questions");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, [setId]);
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
   const handleAnswerClick = (selectedOption) => {
+    if (questions.length === 0) return;
+
     if (selectedOption === questions[currentQuestion].answer) {
       setScore(score + 1);
     }
@@ -32,7 +101,19 @@ const QuizPage = () => {
     }, 300); // small delay for animation feel
   };
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const progress = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+
+  if (loading) {
+    return <div className={styles.loading}>Loading quiz...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (questions.length === 0) {
+    return <div className={styles.noQuestions}>No quiz questions available.</div>;
+  }
 
   return (
     <div className={styles.quizContainer}>

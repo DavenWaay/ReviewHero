@@ -58,3 +58,21 @@ hr {
   color: rgb(73, 73, 73)
 }
 
+.loading,
+.error,
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.emptyState {
+  color: #95a5a6;
+}
+

@@ -57,3 +57,51 @@
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7f8c8d;
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.emptyState p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.createButton {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.createButton:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
