@@ -13,7 +13,9 @@ app.use(cors({
   origin: [
     'https://davenwaay.github.io',  // GitHub Pages domain
     'http://localhost:3000',         // Local development
-    'https://davenwaay.github.io/ReviewHero' // GitHub Pages subpath
+    'https://davenwaay.github.io/ReviewHero', // GitHub Pages subpath
+    'https://reviewhero-frontend.onrender.com', // Render frontend
+    /\.onrender\.com$/ // Allow any Render subdomain
   ],
   credentials: true
 }));
