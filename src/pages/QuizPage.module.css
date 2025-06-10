@@ -89,3 +89,20 @@
 .optionBtn:hover {
   background-color: #007E33;
 }
+
+.loading, .error, .noQuestions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.noQuestions {
+  color: #ff9800;
+}

@@ -1,17 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";  // Import motion
+import { motion } from "framer-motion";
 import SideBar from "../components/SideBar";
 import styles from "./FlashCard.module.css";
 import TopBar from "../components/TopBar";
 import TermDefinitionCard from "../components/TermDefinitionCard";
+import { flashcardAPI } from "../services/api";
+import { auth } from "../firebase";
 
 const FlashCard = () => {
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
+  const [flashcards, setFlashcards] = useState([]);
+  const [flashcardSets, setFlashcardSets] = useState([]);
+  const [selectedSetId, setSelectedSetId] = useState(null);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+
+
+  useEffect(() => {
+    const fetchFlashcards = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          navigate('/landing');
+          return;
+        }
+        
+        const response = await flashcardAPI.getUserSets(user.uid);
+        if (response.data && response.data.length > 0) {
+          setFlashcardSets(response.data);
+          // Default to first set
+          setSelectedSetId(response.data[0]._id);
+          setFlashcards(response.data[0].cards || []);
+        }
+
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching flashcards:', err);
+        setError('Failed to load flashcards');
+        setLoading(false);
+      }
+    };
+
+    fetchFlashcards();
+  }, [navigate]);
+
 
   const handleQuizClick = () => {
-    navigate("/quizpage");
+    if (selectedSetId) {
+      navigate(`/quizpage/${selectedSetId}`);
+    } else {
+      navigate("/quizpage");
+    }
   };
 
   const handleLearnClick = () => {
@@ -21,6 +67,75 @@ const FlashCard = () => {
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isShuffled, setIsShuffled] = useState(false);
+
+  useEffect(() => {
+    let interval;
+    if (isPlaying) {
+      interval = setInterval(() => {
+        handleNextCard();
+      }, 3000);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying, currentCardIndex]);
+
+  const handlePrevCard = () => {
+    setCurrentCardIndex((prev) => 
+      prev > 0 ? prev - 1 : flashcards.length - 1
+    );
+    setIsFlipped(false);
+  };
+
+  const handleNextCard = () => {
+    setCurrentCardIndex((prev) => 
+      prev < flashcards.length - 1 ? prev + 1 : 0
+    );
+    setIsFlipped(false);
+  };
+
+  const toggleShuffle = () => {
+    setIsShuffled(!isShuffled);
+    setFlashcards(prev => 
+      isShuffled ? [...prev].sort((a, b) => a.term.localeCompare(b.term))
+                : [...prev].sort(() => Math.random() - 0.5)
+    );
+    setCurrentCardIndex(0);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <SideBar />
+        <div className={styles.main}>
+          <TopBar />
+          <hr />
+          <div className={styles.loading}>Loading flashcards...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <SideBar />
+        <div className={styles.main}>
+          <TopBar />
+          <hr />
+          <div className={styles.error}>{error}</div>
+        </div>
+      </div>
+    );
+  }
+
+  const currentCard = flashcards[currentCardIndex] || { term: 'No cards available', definition: 'Please create some flashcards' };
 
   return (
     <div className={styles.container}>
@@ -35,8 +150,28 @@ const FlashCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2>Subject Title</h2>
+          <div className={styles.setSelector}>
+            <select 
+              value={selectedSetId || ''}
+              onChange={(e) => {
+                const setId = e.target.value;
+                setSelectedSetId(setId);
+                const selectedSet = flashcardSets.find(set => set._id === setId);
+                setFlashcards(selectedSet?.cards || []);
+                setCurrentCardIndex(0);
+              }}
+            >
+              {flashcardSets.map(set => (
+                <option key={set._id} value={set._id}>
+                  {set.title} ({set.cards.length} cards)
+                </option>
+              ))}
+            </select>
+          </div>
+          <h2>{flashcards.length > 0 ? 'Your Flashcards' : 'No Flashcards Yet'}</h2>
+
         </motion.div>
+
 
         {/* Buttons Container with Animation */}
         <motion.div
@@ -61,18 +196,15 @@ const FlashCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div
-            className={`${styles.FlashCard} ${isFlipped ? styles.flipped : ""}`}
-            onClick={handleFlip}
-          >
-            <div className={`${styles.FlashCardContent} ${styles.FlashCardFront}`}>
-              <h3>Definition (Front)</h3>
-            </div>
-            <div className={`${styles.FlashCardContent} ${styles.FlashCardBack}`}>
-              <h3>Answer (Back)</h3>
-            </div>
-          </div>
+          <TermDefinitionCard 
+            term={currentCard.term}
+            definition={currentCard.definition}
+            isFlipped={isFlipped}
+            onFlip={handleFlip}
+          />
+
         </motion.div>
+
 
         {/* Progress Section with Animation */}
         <motion.div
@@ -86,29 +218,33 @@ const FlashCard = () => {
 
           {/* Center: Previous & Next Buttons */}
           <div className={styles.navButtons}>
-            <button className={styles.btnPrev}>
+            <button className={styles.btnPrev} onClick={handlePrevCard} disabled={currentCardIndex === 0}>
               <i className="bx bx-chevron-left"></i>
             </button>
-            <span>1 / 37</span>
-            <button className={styles.btnNext}>
+            <span>{currentCardIndex + 1} / {flashcards.length}</span>
+            <button className={styles.btnNext} onClick={handleNextCard} disabled={currentCardIndex === flashcards.length - 1}>
               <i className="bx bx-chevron-right"></i>
             </button>
           </div>
 
           {/* Right Side: Additional Controls */}
           <div className={styles.sideBtn}>
-            <button className={styles.btnPlay}>
-              <i className="bx bx-play"></i>
+            <button 
+              className={styles.btnPlay} 
+              onClick={togglePlay}
+              aria-label={isPlaying ? 'Stop auto-play' : 'Start auto-play'}
+            >
+              <i className={`bx ${isPlaying ? 'bx-stop' : 'bx-play'}`}></i>
             </button>
-            <button className={styles.btnShuffle}>
-              <i className="bx bx-shuffle"></i>
+            <button 
+              className={styles.btnShuffle}
+              onClick={toggleShuffle}
+              aria-label={isShuffled ? 'Unshuffle cards' : 'Shuffle cards'}
+            >
+              <i className={`bx bx-shuffle ${isShuffled ? styles.activeShuffle : ''}`}></i>
             </button>
-            <button className={styles.btnSettings}>
-              <i className="bx bxs-cog"></i>
-            </button>
-            <button className={styles.btnFullscreen}>
-              <i className="bx bx-fullscreen"></i>
-            </button>
+
+
           </div>
         </motion.div>
 
@@ -119,26 +255,13 @@ const FlashCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <TermDefinitionCard
-            term="Tralalero Tralala"
-            definition="Tralalero Tralala is a shark with three legs and stylish blue Nike shoes."
-          />
-          <TermDefinitionCard
-            term="Tung Tung Tung Sahur"
-            definition="An anomaly that comes during Sahur and knocks on your house."
-          />
-          <TermDefinitionCard
-            term="Bobritto bandito"
-            definition="A beaver bandit with black jacket, sunglasses and a hat."
-          />
-          <TermDefinitionCard
-            term="Bombardiro Crocodillo"
-            definition="A flying crocodile that bombards kids, fictional and humorous."
-          />
-          <TermDefinitionCard
-            term="La vaca saturno saturnita"
-            definition="A space cow with Saturn's rings, walking on Earth happily."
-          />
+          {flashcards.map((card, index) => (
+            <TermDefinitionCard
+              key={index}
+              term={card.term}
+              definition={card.definition}
+            />
+          ))}
         </motion.div>
       </div>
     </div>

@@ -1,23 +1,69 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { flashcardAPI } from "../services/api";
+import { auth } from "../firebase";
 import styles from "./LearnPage.module.css";
 
-const flashcards = [
-  { term: "Photosynthesis", definition: "Process by which green plants create energy from sunlight" },
-  { term: "Osmosis", definition: "Movement of water across a semipermeable membrane" },
-  { term: "Mitosis", definition: "Type of cell division that results in two daughter cells" },
-  // Add more cards if you want
-];
-
 const Learn = () => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+  const { setId } = useParams();
+  
+  const [flashcards, setFlashcards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [setTitle, setSetTitle] = useState("");
+
+  useEffect(() => {
+    const fetchFlashcards = async () => {
+      try {
+        if (!user) {
+          navigate('/landing');
+          return;
+        }
+
+        setIsLoading(true);
+        let response;
+        
+        if (setId) {
+          // If setId is provided, get specific set
+          response = await flashcardAPI.getSet(setId);
+          setFlashcards(response.data.cards || []);
+          setSetTitle(response.data.title || 'Learn Mode');
+        } else {
+          // Otherwise get user's first set
+          response = await flashcardAPI.getUserSets(user.uid);
+          if (response.data && response.data.length > 0) {
+            const firstSet = response.data[0];
+            setFlashcards(firstSet.cards || []);
+            setSetTitle(firstSet.title || 'Learn Mode');
+          }
+        }
+        
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching flashcards:', error);
+        setError('Failed to load flashcards');
+        setFlashcards([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (!loading) {
+      fetchFlashcards();
+    }
+  }, [user, loading, setId, navigate]);
 
   const handleCheckAnswer = () => {
+    if (flashcards.length === 0) return;
+    
     const correct = flashcards[currentIndex].definition.toLowerCase().trim();
     const input = userAnswer.toLowerCase().trim();
     setIsCorrect(input === correct);
@@ -38,7 +84,7 @@ const Learn = () => {
   };
 
   const handleBack = () => {
-    navigate("/studysets");
+    navigate("/library");
   };
 
   const handleRestart = () => {
@@ -49,6 +95,38 @@ const Learn = () => {
     setIsFinished(false);
   };
 
+  if (loading || isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <div className={styles.loading}>Loading flashcards...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <div className={styles.error}>{error}</div>
+          <button onClick={handleBack} className={styles.btnGreen}>Back to Library</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (flashcards.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <div className={styles.emptyState}>No flashcards available for learning.</div>
+          <button onClick={handleBack} className={styles.btnGreen}>Back to Library</button>
+        </div>
+      </div>
+    );
+  }
+
   const progressPercentage = ((currentIndex + 1) / flashcards.length) * 100;
 
   return (
@@ -56,7 +134,7 @@ const Learn = () => {
       <div className={styles.main}>
         {/* Top bar */}
         <div className={styles.topBar}>
-          <h2 className={styles.title}>Learn</h2>
+          <h2 className={styles.title}>Learn: {setTitle}</h2>
           <button onClick={handleBack} className={styles.backButton}>Back</button>
         </div>
 

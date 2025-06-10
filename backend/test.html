@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReviewHero Backend Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; background: #f8f9fa; border-left: 4px solid #007bff; }
+        .error { border-left-color: #dc3545; background: #f8d7da; }
+        .success { border-left-color: #28a745; background: #d4edda; }
+    </style>
+</head>
+<body>
+    <h1>ReviewHero Backend API Test</h1>
+    
+    <div class="test-section">
+        <h3>1. Test Basic Server Connection</h3>
+        <button onclick="testBasicConnection()">Test Server</button>
+        <div id="basic-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. Test Authentication (Should Fail)</h3>
+        <button onclick="testAuthWithoutToken()">Test Without Token</button>
+        <button onclick="testAuthWithInvalidToken()">Test Invalid Token</button>
+        <div id="auth-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. Test Login Endpoint</h3>
+        <button onclick="testLoginWithoutToken()">Test Login Without Token</button>
+        <button onclick="testLoginWithInvalidToken()">Test Login Invalid Token</button>
+        <div id="login-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+
+        async function testBasicConnection() {
+            const resultDiv = document.getElementById('basic-result');
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const text = await response.text();
+                resultDiv.innerHTML = `<strong>✅ Success:</strong> ${text}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Error:</strong> ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testAuthWithoutToken() {
+            const resultDiv = document.getElementById('auth-result');
+            try {
+                const response = await fetch(`${API_BASE}/api/flashcards/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: 'Test Set',
+                        description: 'Testing',
+                        cards: [{ term: 'Test', definition: 'A test card' }]
+                    })
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<strong>✅ Expected Error:</strong> ${JSON.stringify(data)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Unexpected Error:</strong> ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testAuthWithInvalidToken() {
+            const resultDiv = document.getElementById('auth-result');
+            try {
+                const response = await fetch(`${API_BASE}/api/flashcards/create`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer invalid_token'
+                    },
+                    body: JSON.stringify({
+                        title: 'Test Set',
+                        description: 'Testing',
+                        cards: [{ term: 'Test', definition: 'A test card' }]
+                    })
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<strong>✅ Expected Error:</strong> ${JSON.stringify(data)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Unexpected Error:</strong> ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testLoginWithoutToken() {
+            const resultDiv = document.getElementById('login-result');
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<strong>✅ Expected Error:</strong> ${JSON.stringify(data)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Unexpected Error:</strong> ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testLoginWithInvalidToken() {
+            const resultDiv = document.getElementById('login-result');
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ idToken: 'invalid_firebase_token' })
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<strong>✅ Expected Error:</strong> ${JSON.stringify(data)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>❌ Unexpected Error:</strong> ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html>

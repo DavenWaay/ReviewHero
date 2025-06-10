@@ -6,7 +6,7 @@
     gap: 2rem;
 }
 
-.signupForm {
+.loginForm {
     flex: 1;
     background-color: white;
     padding: 2rem;
@@ -17,15 +17,19 @@
     max-width: 500px;
 }
 
-.signupForm h2 {
+.loginForm h2 {
     margin-bottom: 10px;
     color: #333;
     font-size: 2rem;
 }
 
-.signupForm p {
+.loginForm p {
     margin-bottom: 20px;
     color: #666;
+}
+
+.loginForm form {
+    width: 100%;
 }
 
 .error {
@@ -38,7 +42,7 @@
     border: 1px solid #fcc;
 }
 
-.signupButton {
+.loginButton {
     background-color: #3a7d44;
     color: white;
     border: none;
@@ -52,28 +56,28 @@
     margin: 1rem 0;
 }
 
-.signupButton:hover:not(:disabled) {
+.loginButton:hover:not(:disabled) {
     background-color: #2d5f35;
 }
 
-.signupButton:disabled {
+.loginButton:disabled {
     opacity: 0.7;
     cursor: not-allowed;
 }
 
-.signupForm p:last-child {
+.loginForm p:last-child {
     margin-top: 1rem;
     margin-bottom: 0;
     text-align: center;
 }
 
-.signupForm a {
+.loginForm a {
     color: #3a7d44;
     text-decoration: none;
     font-weight: bold;
 }
 
-.signupForm a:hover {
+.loginForm a:hover {
     text-decoration: underline;
 }
 
@@ -107,14 +111,13 @@
         padding: 1rem;
     }
     
-    .signupForm,
+    .loginForm,
     .features {
         max-width: none;
     }
     
-    .signupForm h2,
+    .loginForm h2,
     .features h2 {
         font-size: 1.5rem;
     }
 }
-  

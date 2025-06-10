@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# Review Hero – Flashcard Learning Web App  
+A responsive and interactive **web-based application** designed to help users review and manage flashcards efficiently. Ideal for learners who prefer a clean, fast, and focused review experience.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## 🔗 Live Demo  
+Check out the live version here:  
+👉 https://davenwaay.github.io/ReviewHero/
 
-In the project directory, you can run:
+📐 Optimized for screens 1366×768 and above.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📌 Description  
+Review Hero is a **flashcard-based website application** focused on reviewing term-definition pairs. Built using React, it supports dynamic and reusable components tailored for an efficient learning experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> 🚧 **Project Status:**  
+> The **frontend is complete**, and the project is **currently ongoing**. Backend features (such as user data persistence, login, and analytics) are planned for future development.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Features  
+- Term-definition flashcard system  
+- Interactive icons: star, audio, and edit  
+- Responsive layout with component-based design  
+- Sidebar navigation with hover and active state styling  
+- Smooth transitions using Framer Motion  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Built With  
+- [React](https://reactjs.org/)  
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)  
+- [Boxicons](https://boxicons.com/) – for UI icons  
+- [Framer Motion](https://www.framer.com/motion/) – for animations  
+- [Visual Studio Code](https://code.visualstudio.com/) – development environment  
+- [MongoDB](https://www.mongodb.com/) - for database
+- [Express](https://expressjs.com/) - for backend API
+- [Firebase](https://firebase.google.com/) - for authentication
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 👥 Team Members  
+- [@slricta](https://github.com/slricta) – Stephen Rodriguez  
+- [@DavenWaay](https://github.com/davenwaay) – Daven Waay  
+- [@docurev111](https://github.com/docurev111) – Gerwin Dean Alcober  
+- [@mattquiling](https://github.com/mattquiling) – Matthew Meinrad Quiling  
+- Rhodel Andaya  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📫 Contact Us  
+- ic.stephen.rodriguez@cvsu.edu.ph  
+- davenwaay18@gmail.com
+- ic.gerwindean.alcober@cvsu.edu.ph  
+- ic.matthewmeinrad.quiling@cvsu.edu.ph  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🧪 Installation (For Local Development)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend Setup
+```bash
+# Clone the repository
+git clone https://github.com/DavenWaay/ReviewHero
 
-## Learn More
+# Navigate into the folder
+cd ReviewHero
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Install the frontend dependencies
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Create a .env file in the root directory with:
+REACT_APP_API_URL=http://localhost:5001/api
 
-### Code Splitting
+# Start the frontend development server
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend Setup
+```bash
+# Navigate to the backend folder
+cd backend
 
-### Analyzing the Bundle Size
+# Install the backend dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Create a .env file in the backend directory with:
+MONGODB_URI=your_mongodb_connection_string
+PORT=5001
 
-### Making a Progressive Web App
+# Get your Firebase service account key:
+# 1. Go to Firebase Console
+# 2. Project Settings > Service Accounts
+# 3. Generate New Private Key
+# 4. Save as 'firebase-service-account.json' in the backend folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Start the backend development server
+npm run dev
+```
 
-### Advanced Configuration
+### Important Notes for Team Members
+1. You need to set up your own MongoDB database:
+   - Create a free MongoDB Atlas account
+   - Create a new cluster
+   - Get your connection string
+   - Replace 'your_mongodb_connection_string' in backend/.env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. You need Firebase configuration:
+   - Get the firebase-service-account.json from the team lead
+   - Place it in the backend folder
 
-### Deployment
+3. Make sure both frontend and backend servers are running:
+   - Frontend: http://localhost:3000
+   - Backend: http://localhost:5001
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Common Issues:
+   - If MongoDB connection fails, check your connection string and network access in MongoDB Atlas
+   - If Firebase auth fails, ensure firebase-service-account.json is properly placed
+   - If API calls fail, check if both servers are running and REACT_APP_API_URL is set correctly
