@@ -56,6 +56,16 @@ if (!mongoURI) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const flashcardRoutes = require('./routes/flashcards');
+
+// Use routes
+console.log('Registering routes...');
+app.use('/api/auth', authRoutes);
+app.use('/api/flashcards', flashcardRoutes);
+console.log('Routes registered successfully');
+
 console.log('Attempting to connect to MongoDB...');
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -63,16 +73,6 @@ mongoose.connect(mongoURI, {
 })
 .then(() => {
   console.log('MongoDB connected successfully');
-  console.log('Registering routes...');
-  
-  // Import routes
-  const authRoutes = require('./routes/auth');
-  const flashcardRoutes = require('./routes/flashcards');
-
-  // Use routes
-  app.use('/api/auth', authRoutes);
-  app.use('/api/flashcards', flashcardRoutes);
-  console.log('Routes registered successfully');
 })
 .catch((err) => {
   console.error('MongoDB connection error:', err);
