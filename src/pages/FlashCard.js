@@ -7,6 +7,7 @@ import SideBar from "../components/SideBar";
 import styles from "./FlashCard.module.css";
 import TopBar from "../components/TopBar";
 import TermDefinitionCard from "../components/TermDefinitionCard";
+import FlashCard from "../components/FlashCard";
 import { flashcardAPI } from "../services/api";
 import { auth } from "../firebase";
 
@@ -196,7 +197,7 @@ const FlashCard = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <TermDefinitionCard 
+          <FlashCard 
             term={currentCard.term}
             definition={currentCard.definition}
             isFlipped={isFlipped}
