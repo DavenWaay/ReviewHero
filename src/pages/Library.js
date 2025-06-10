@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import SideBar from "../components/SideBar";
 import 'boxicons/css/boxicons.min.css';
 import TopBar from "../components/TopBar";
-import QuizTitleCard from "../components/QuizTitleCard";
+import QuizCard from "../components/QuizCard";
 import { flashcardAPI } from "../services/api";
 import { auth } from "../firebase";
 import styles from "./Library.module.css";
@@ -191,7 +191,7 @@ const Library = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
               >
-                <QuizTitleCard 
+                <QuizCard 
                   title={set.title}
                   description={set.description}
                   author={set.createdBy?.name || 'You'}
