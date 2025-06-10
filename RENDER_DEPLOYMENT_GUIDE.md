@@ -1,9 +1,9 @@
 # Render Deployment Guide for ReviewHero
 
 ## Prerequisites
-- MongoDB Atlas connection string (you have this)
-- Firebase service account JSON (you have this)
-- GitHub repository (already set up)
+- MongoDB Atlas connection string 
+- Firebase service account JSON 
+- GitHub repository (needs to be set-up already.)
 
 ## Step 1: Deploy Backend Service
 

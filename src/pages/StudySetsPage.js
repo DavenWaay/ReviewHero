@@ -139,6 +139,7 @@ const StudySetsPage = () => {
                     description={set.description || `${set.cards?.length || 0} flashcards`}
                     author={user?.displayName || user?.email?.split('@')[0] || 'You'}
                     items={set.cards?.length || 0}
+                    setId={set._id}
                     onStartQuiz={() => handleStartQuiz(set._id)}
                     onLearn={() => handleLearnSet(set._id)}
                   />
@@ -184,6 +185,7 @@ const StudySetsPage = () => {
                     description={set.description || `${set.cards?.length || 0} flashcards`}
                     author={user?.displayName || user?.email?.split('@')[0] || 'You'}
                     items={set.cards?.length || 0}
+                    setId={set._id}
                     onStartQuiz={() => handleStartQuiz(set._id)}
                     onLearn={() => handleLearnSet(set._id)}
                   />

@@ -1,11 +1,14 @@
-# Review Hero – Flashcard Learning Web App  
+# ReviewHero
+
+<!-- Added a trivial comment to trigger fresh build on Render -->
+<!-- Redeploy triggered to clear build cache and fix deployment issues -->
 A responsive and interactive **web-based application** designed to help users review and manage flashcards efficiently. Ideal for learners who prefer a clean, fast, and focused review experience.
 
 ---
 
 ## 🔗 Live Demo  
 Check out the live version here:  
-👉 https://davenwaay.github.io/ReviewHero/
+👉 https://reviewhero.onrender.com/
 
 📐 Optimized for screens 1366×768 and above.
 
@@ -15,16 +18,17 @@ Check out the live version here:
 Review Hero is a **flashcard-based website application** focused on reviewing term-definition pairs. Built using React, it supports dynamic and reusable components tailored for an efficient learning experience.
 
 > 🚧 **Project Status:**  
-> The **frontend is complete**, and the project is **currently ongoing**. Backend features (such as user data persistence, login, and analytics) are planned for future development.
+> The project is **currently ongoing**. Both frontend and backend features are implemented, including user authentication, flashcard management, and study progress tracking.
 
 ---
 
 ## ✨ Features  
-- Term-definition flashcard system  
-- Interactive icons: star, audio, and edit  
+- Term-definition flashcard system with study progress tracking
+- User authentication and personal study sets
+- Interactive study modes: Flashcards, Learn, and Quiz
 - Responsive layout with component-based design  
 - Sidebar navigation with hover and active state styling  
-- Smooth transitions using Framer Motion  
+- Smooth transitions using Framer Motion
 
 ---
 
@@ -37,6 +41,7 @@ Review Hero is a **flashcard-based website application** focused on reviewing te
 - [MongoDB](https://www.mongodb.com/) - for database
 - [Express](https://expressjs.com/) - for backend API
 - [Firebase](https://firebase.google.com/) - for authentication
+- [Render](https://render.com/) - for deployment and hosting
 
 ---
 
@@ -52,7 +57,7 @@ Review Hero is a **flashcard-based website application** focused on reviewing te
 ## 📫 Contact Us  
 - ic.stephen.rodriguez@cvsu.edu.ph  
 - davenwaay18@gmail.com
-- ic.gerwindean.alcober@cvsu.edu.ph  
+- ic.gerwin.alcober@cvsu.edu.ph  
 - ic.matthewmeinrad.quiling@cvsu.edu.ph  
 
 ---
@@ -71,7 +76,7 @@ cd ReviewHero
 npm install
 
 # Create a .env file in the root directory with:
-REACT_APP_API_URL=http://localhost:5001/api
+REACT_APP_API_URL=http://localhost:5000
 
 # Start the frontend development server
 npm start
@@ -87,7 +92,7 @@ npm install
 
 # Create a .env file in the backend directory with:
 MONGODB_URI=your_mongodb_connection_string
-PORT=5001
+PORT=5000
 
 # Get your Firebase service account key:
 # 1. Go to Firebase Console
@@ -112,7 +117,7 @@ npm run dev
 
 3. Make sure both frontend and backend servers are running:
    - Frontend: http://localhost:3000
-   - Backend: http://localhost:5001
+   - Backend: http://localhost:5000
 
 4. Common Issues:
    - If MongoDB connection fails, check your connection string and network access in MongoDB Atlas

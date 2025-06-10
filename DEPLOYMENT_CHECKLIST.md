@@ -61,8 +61,6 @@
 - [ ] Data persists in MongoDB
 - [ ] Navigation works properly
 
-## Share with Classmates
-
 Once deployed, share this URL:
 ```
 https://reviewhero-frontend.onrender.com

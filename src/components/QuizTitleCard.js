@@ -15,23 +15,17 @@ const QuizTitleCard = ({ title, author, items, description, setId, onClick }) =>
 
     const handleFlashcardClick = (e) => {
         e.stopPropagation();
-        if (setId) {
-            navigate(`/flashcard/${setId}`);
-        }
+        navigate('/flashcards');
     };
 
     const handleLearnClick = (e) => {
         e.stopPropagation();
-        if (setId) {
-            navigate(`/learn/${setId}`);
-        }
+        navigate('/learn');
     };
 
     const handleQuizClick = (e) => {
         e.stopPropagation();
-        if (setId) {
-            navigate(`/quiz/${setId}`);
-        }
+        navigate('/quizpage');
     };
 
     return (

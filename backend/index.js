@@ -21,6 +21,17 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Add request logging middleware
+app.use((req, res, next) => {
+  console.log(`=== INCOMING REQUEST ===`);
+  console.log(`Method: ${req.method}`);
+  console.log(`URL: ${req.url}`);
+  console.log(`Path: ${req.path}`);
+  console.log(`Headers:`, JSON.stringify(req.headers, null, 2));
+  console.log(`========================`);
+  next();
+});
+
 // Firebase Admin initialization
 let serviceAccount;
 try {
@@ -45,6 +56,16 @@ if (!mongoURI) {
   throw new Error('MONGODB_URI is not defined in environment variables');
 }
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const flashcardRoutes = require('./routes/flashcards');
+
+// Use routes
+console.log('Registering routes...');
+app.use('/api/auth', authRoutes);
+app.use('/api/flashcards', flashcardRoutes);
+console.log('Routes registered successfully');
+
 console.log('Attempting to connect to MongoDB...');
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -52,16 +73,6 @@ mongoose.connect(mongoURI, {
 })
 .then(() => {
   console.log('MongoDB connected successfully');
-  console.log('Registering routes...');
-  
-  // Import routes
-  const authRoutes = require('./routes/auth');
-  const flashcardRoutes = require('./routes/flashcards');
-
-  // Use routes
-  app.use('/api/auth', authRoutes);
-  app.use('/api/flashcards', flashcardRoutes);
-  console.log('Routes registered successfully');
 })
 .catch((err) => {
   console.error('MongoDB connection error:', err);
@@ -75,6 +86,11 @@ app.get('/', (req, res) => {
 
 // Add a catch-all route to handle unknown paths and avoid 404 on root
 app.all('*', (req, res) => {
+  console.log(`=== 404 CATCH-ALL ===`);
+  console.log(`Method: ${req.method}`);
+  console.log(`URL: ${req.url}`);
+  console.log(`Path: ${req.path}`);
+  console.log(`==================`);
   res.status(404).send('Not Found');
 });
 

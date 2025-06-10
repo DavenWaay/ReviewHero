@@ -3,6 +3,9 @@ import { auth } from '../firebase';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
+console.log('API_BASE_URL:', API_BASE_URL);
+console.log('REACT_APP_API_URL env var:', process.env.REACT_APP_API_URL);
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
