@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import SideBar from "../components/SideBar";
+import FlashCard from "../components/FlashCard";
 import styles from "./FlashCard.module.css";
 import TopBar from "../components/TopBar";
 import TermDefinitionCard from "../components/TermDefinitionCard";
@@ -202,8 +203,6 @@ const FlashCardPage = () => {
           <FlashCard 
             term={currentCard.term}
             definition={currentCard.definition}
-            isFlipped={isFlipped}
-            onFlip={handleFlip}
           />
 
         </motion.div>
