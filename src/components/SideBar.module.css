@@ -6,19 +6,17 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
-    align-items: center;
     box-shadow: 2px 0 5px rgba(0, 0, 0, .3);
     z-index: 100;
-    
-  }
+    position: relative;
+}
   
-  .topContent {
+.topContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-  }
+}
 
 .logo {
     display: flex;
@@ -37,6 +35,7 @@
 .links {
     width: 100%;
     margin-top: 20px;
+    flex: 1;
 }
 
 .links ul {
@@ -45,7 +44,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    
+    gap: 8px;
 }
 
 .link {
@@ -68,7 +67,6 @@
     font-size: 1.3rem;
 }
 
-
 /* Hover state */
 .link:hover {
     background-color: #27ae60;
@@ -87,7 +85,6 @@
 }
 
 .createButton {
-    margin-top: 20px;
     background-color: #27ae60;
     color: white;
     font-size: 16px;
@@ -97,10 +94,76 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
+    margin-bottom: 20px;
+    margin-top: auto;
 }
 
 .createButton:hover {
     background-color: #219150;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        flex-direction: row;
+        padding: 10px;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .links {
+        margin-top: 0;
+        flex: 1;
+    }
+
+    .links ul {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        gap: 0;
+    }
+
+    .link {
+        width: auto;
+        padding: 8px 12px;
+        font-size: 14px;
+        gap: 5px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .createButton {
+        width: auto;
+        padding: 8px 12px;
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 8px;
+    }
+
+    .link {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .createButton {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
 }
 
 .logoutButton {
