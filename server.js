@@ -4,15 +4,20 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-// Serve static files from the current directory (build directory)
-app.use(express.static(__dirname));
+// Get the correct build path for both local and production environments
+const buildPath = process.env.NODE_ENV === 'production' 
+  ? '/opt/render/project/src/build'
+  : path.join(__dirname, 'build');
+
+// Serve static files from the React app build directory
+app.use(express.static(buildPath));
 
 // Catch all handler: send back React's index.html file for any non-API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  console.log(`Serving static files from: ${__dirname}`);
+  console.log(`Serving static files from: ${buildPath}`);
 });
