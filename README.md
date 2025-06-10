@@ -1,4 +1,7 @@
-# Review Hero – Flashcard Learning Web App  
+# ReviewHero
+
+<!-- Added a trivial comment to trigger fresh build on Render -->
+<!-- Redeploy triggered to clear build cache and fix deployment issues -->
 A responsive and interactive **web-based application** designed to help users review and manage flashcards efficiently. Ideal for learners who prefer a clean, fast, and focused review experience.
 
 ---
