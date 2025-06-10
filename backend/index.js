@@ -21,6 +21,17 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Add request logging middleware
+app.use((req, res, next) => {
+  console.log(`=== INCOMING REQUEST ===`);
+  console.log(`Method: ${req.method}`);
+  console.log(`URL: ${req.url}`);
+  console.log(`Path: ${req.path}`);
+  console.log(`Headers:`, JSON.stringify(req.headers, null, 2));
+  console.log(`========================`);
+  next();
+});
+
 // Firebase Admin initialization
 let serviceAccount;
 try {
@@ -75,6 +86,11 @@ app.get('/', (req, res) => {
 
 // Add a catch-all route to handle unknown paths and avoid 404 on root
 app.all('*', (req, res) => {
+  console.log(`=== 404 CATCH-ALL ===`);
+  console.log(`Method: ${req.method}`);
+  console.log(`URL: ${req.url}`);
+  console.log(`Path: ${req.path}`);
+  console.log(`==================`);
   res.status(404).send('Not Found');
 });
 
