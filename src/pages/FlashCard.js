@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import SideBar from "../components/SideBar";
 import styles from "./FlashCard.module.css";
@@ -12,6 +10,7 @@ import { auth } from "../firebase";
 
 const FlashCard = () => {
   const navigate = useNavigate();
+  const { setId } = useParams();
   const [isFlipped, setIsFlipped] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
   const [flashcardSets, setFlashcardSets] = useState([]);
@@ -35,9 +34,13 @@ const FlashCard = () => {
         const response = await flashcardAPI.getUserSets(user.uid);
         if (response.data && response.data.length > 0) {
           setFlashcardSets(response.data);
-          // Default to first set
-          setSelectedSetId(response.data[0]._id);
-          setFlashcards(response.data[0].cards || []);
+          
+          // If setId is provided in URL, use that set, otherwise default to first set
+          const targetSetId = setId || response.data[0]._id;
+          const targetSet = response.data.find(set => set._id === targetSetId) || response.data[0];
+          
+          setSelectedSetId(targetSet._id);
+          setFlashcards(targetSet.cards || []);
         }
 
         setLoading(false);
@@ -49,7 +52,7 @@ const FlashCard = () => {
     };
 
     fetchFlashcards();
-  }, [navigate]);
+  }, [navigate, setId]);
 
 
   const handleQuizClick = () => {

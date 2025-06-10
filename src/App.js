@@ -82,6 +82,21 @@ function App() {
             <FlashCard />
           </ProtectedRoute>
         } />
+        <Route path="/flashcard/:setId" element={
+          <ProtectedRoute>
+            <FlashCard />
+          </ProtectedRoute>
+        } />
+        <Route path="/learn/:setId" element={
+          <ProtectedRoute>
+            <LearnPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/quiz/:setId" element={
+          <ProtectedRoute>
+            <QuizPage />
+          </ProtectedRoute>
+        } />
         <Route path="/createflashcard" element={
           <ProtectedRoute>
             <CreateFlashCard />
