@@ -129,8 +129,8 @@ const CreateStudySet = () => {
         }
         
         if (found && term && definition && term.length > 0 && definition.length > 0) {
-          // Clean up the term and definition
-          term = term.replace(/^[\d\w\-\*\•]\s*[\.\)\-\s]*/, '').trim();
+          // Clean up the term and definition - only remove bullet points and numbers, not letters
+          term = term.replace(/^[\d]+[\.\)\-\s]+/, '').replace(/^[\*\•\-]\s+/, '').trim();
           definition = definition.replace(/^[\-\s]*/, '').trim();
           
           if (term && definition) {
