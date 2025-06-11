@@ -14,7 +14,7 @@ const SignUpPage = () => {
     password: "",
     confirmPassword: ""
   });
-  const [error, setError] = useState("");
+  const [generalError, setGeneralError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -25,38 +25,46 @@ const SignUpPage = () => {
     }));
   };
 
+  // Helper function to get error message for each field
+  const getFieldError = (fieldName, value) => {
+    if (!value || !value.trim()) {
+      return "Please fill out this field";
+    }
+    return "";
+  };
+
+  // Helper function to get password confirmation error
+  const getConfirmPasswordError = (password, confirmPassword) => {
+    if (!confirmPassword || !confirmPassword.trim()) {
+      return "Please fill out this field";
+    }
+    if (password && confirmPassword && password !== confirmPassword) {
+      return "Passwords do not match";
+    }
+    return "";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setGeneralError("");
     setLoading(true);
 
     // Form validation
-    if (!formData.username.trim()) {
-      setError("Username is required");
-      setLoading(false);
-      return;
-    }
-
-    if (!formData.email.trim()) {
-      setError("Email is required");
-      setLoading(false);
-      return;
-    }
-
-    if (!formData.password.trim()) {
-      setError("Password is required");
+    if (!formData.username.trim() || !formData.email.trim() || 
+        !formData.password.trim() || !formData.confirmPassword.trim()) {
+      setGeneralError("Please fill out all fields");
       setLoading(false);
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setGeneralError("Passwords do not match");
       setLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
-      setError("Password should be at least 6 characters");
+      setGeneralError("Password should be at least 6 characters");
       setLoading(false);
       return;
     }
@@ -88,26 +96,26 @@ const SignUpPage = () => {
       console.log("Full error object:", JSON.stringify(error, null, 2));
       
       if (error.code === "auth/api-key-not-valid") {
-        setError("There's an issue with the Firebase configuration. Please try again later.");
+        setGeneralError("There's an issue with the Firebase configuration. Please try again later.");
       } else {
         switch (error.code) {
           case "auth/email-already-in-use":
-            setError("This email is already registered. Please try logging in instead.");
+            setGeneralError("This email is already registered. Please try logging in instead.");
             break;
           case "auth/invalid-email":
-            setError("Please enter a valid email address.");
+            setGeneralError("Please enter a valid email address.");
             break;
           case "auth/weak-password":
-            setError("Password is too weak. Please use a stronger password.");
+            setGeneralError("Password is too weak. Please use a stronger password.");
             break;
           case "auth/network-request-failed":
-            setError("Network error. Please check your internet connection.");
+            setGeneralError("Network error. Please check your internet connection.");
             break;
           case "auth/operation-not-allowed":
-            setError("Email/password sign up is not enabled. Please contact support.");
+            setGeneralError("Email/password sign up is not enabled. Please contact support.");
             break;
           default:
-            setError(`Authentication error: ${error.message}`);
+            setGeneralError(`Authentication error: ${error.message}`);
         }
       }
     } finally {
@@ -131,6 +139,7 @@ const SignUpPage = () => {
             value={formData.username}
             onChange={handleInputChange}
             required
+            error={getFieldError("username", formData.username)}
           />
           <InputField
             label="Email"
@@ -140,6 +149,7 @@ const SignUpPage = () => {
             value={formData.email}
             onChange={handleInputChange}
             required
+            error={getFieldError("email", formData.email)}
           />
           <InputField
             label="Password"
@@ -149,6 +159,7 @@ const SignUpPage = () => {
             value={formData.password}
             onChange={handleInputChange}
             required
+            error={getFieldError("password", formData.password)}
           />
           <InputField
             label="Confirm Password"
@@ -158,9 +169,10 @@ const SignUpPage = () => {
             value={formData.confirmPassword}
             onChange={handleInputChange}
             required
+            error={getConfirmPasswordError(formData.password, formData.confirmPassword)}
           />
 
-          {error && <div className={styles.error}>{error}</div>}
+          {generalError && <div className={styles.error}>{generalError}</div>}
 
           <button 
             type="submit" 

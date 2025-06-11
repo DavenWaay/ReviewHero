@@ -23,6 +23,14 @@ const InputField = ({
           placeholder={label} 
           className={`${styles.input} ${error ? styles.inputError : ''}`}
           required={required}
+          title="Please fill out this field"
+          onInvalid={(e) => {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+              e.target.setCustomValidity("Please fill out this field");
+            }
+          }}
+          onInput={(e) => e.target.setCustomValidity("")}
         />
       </div>
       {error && <span className={styles.errorMessage}>{error}</span>}

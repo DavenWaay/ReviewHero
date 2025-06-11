@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Test</title>
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-wrapper:focus-within {
+            border-color: #4CAF50;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .input {
+            border: none;
+            outline: none;
+            background: transparent;
+            flex: 1;
+            font-size: 1rem;
+            padding: 5px 0;
+        }
+        
+        .input::placeholder {
+            color: #999;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+        
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Signup Form Validation Test</h2>
+        <form id="signupForm">
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="icon">👤</span>
+                    <input 
+                        type="text" 
+                        name="username"
+                        placeholder="Username" 
+                        class="input"
+                        required
+                        title="Please fill out this field"
+                    />
+                </div>
+                <span class="error-message" id="username-error" style="display: none;">Please fill out this field</span>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="icon">📧</span>
+                    <input 
+                        type="email" 
+                        name="email"
+                        placeholder="Email" 
+                        class="input"
+                        required
+                        title="Please fill out this field"
+                    />
+                </div>
+                <span class="error-message" id="email-error" style="display: none;">Please fill out this field</span>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="icon">🔒</span>
+                    <input 
+                        type="password" 
+                        name="password"
+                        placeholder="Password" 
+                        class="input"
+                        required
+                        title="Please fill out this field"
+                    />
+                </div>
+                <span class="error-message" id="password-error" style="display: none;">Please fill out this field</span>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <span class="icon">🔑</span>
+                    <input 
+                        type="password" 
+                        name="confirmPassword"
+                        placeholder="Confirm Password" 
+                        class="input"
+                        required
+                        title="Please fill out this field"
+                    />
+                </div>
+                <span class="error-message" id="confirm-password-error" style="display: none;">Please fill out this field</span>
+            </div>
+            
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const inputs = form.querySelectorAll('input');
+        
+        // Function to show/hide error messages based on input value
+        function updateErrorMessage(input) {
+            const errorElement = document.getElementById(input.name + '-error');
+            if (input.value.trim() === '') {
+                errorElement.style.display = 'block';
+                errorElement.textContent = 'Please fill out this field';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        // Show error messages initially for empty fields
+        inputs.forEach(input => {
+            updateErrorMessage(input);
+            
+            // Update error message on input change
+            input.addEventListener('input', () => {
+                updateErrorMessage(input);
+                input.setCustomValidity(''); // Clear custom validity
+            });
+            
+            // Set custom validation message
+            input.addEventListener('invalid', (e) => {
+                e.target.setCustomValidity('');
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity('Please fill out this field');
+                }
+            });
+        });
+        
+        // Handle form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            let hasErrors = false;
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    updateErrorMessage(input);
+                    hasErrors = true;
+                }
+            });
+            
+            if (!hasErrors) {
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
