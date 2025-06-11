@@ -53,9 +53,9 @@ const QuizPage = () => {
           const quizQuestions = response.data.cards.map(card => {
             // Generate some fake options for multiple choice
             const fakeOptions = [
-              "Alternative answer 1",
-              "Alternative answer 2", 
-              "Alternative answer 3"
+              "Ninoy Aquino",
+              "Heneral Luna", 
+              "Juan Luna"
             ];
             const allOptions = [card.definition, ...fakeOptions];
             
