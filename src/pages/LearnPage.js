@@ -64,7 +64,7 @@ const Learn = () => {
   const handleCheckAnswer = () => {
     if (flashcards.length === 0) return;
     
-    const correct = flashcards[currentIndex].definition.toLowerCase().trim();
+    const correct = flashcards[currentIndex].term.toLowerCase().trim();
     const input = userAnswer.toLowerCase().trim();
     setIsCorrect(input === correct);
     if (input !== correct) {
@@ -161,7 +161,7 @@ const Learn = () => {
 
             {/* Learn Card */}
             <div className={`${styles.learnCard} ${isCorrect === true ? styles.correctCard : isCorrect === false ? styles.incorrectCard : ""}`}>
-              <h3 className={styles.term}>{flashcards[currentIndex].term}</h3>
+              <h3 className={styles.term}>{flashcards[currentIndex].definition}</h3>
 
               <input
                 type="text"
@@ -175,7 +175,7 @@ const Learn = () => {
               {isCorrect === false && <p className={styles.incorrect}>Incorrect. Try Again!</p>}
 
               {showAnswer && (
-                <p className={styles.showAnswer}>Correct Answer: {flashcards[currentIndex].definition}</p>
+                <p className={styles.showAnswer}>Correct Answer: {flashcards[currentIndex].term}</p>
               )}
 
               <div className={styles.buttonGroup}>
