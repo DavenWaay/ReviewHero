@@ -43,20 +43,131 @@ const CreateStudySet = () => {
 
   const handleCreateFromNotes = () => {
     try {
-      const lines = notesText.trim().split("\n");
-      const newCards = lines
-        .map((line) => {
-          const parts = line.split(/:|-/);
-          const term = parts[0]?.trim();
-          const definition = parts.slice(1).join(":").trim();
-          return { term, definition };
-        })
-        .filter((card) => card.term && card.definition);
-      setFlashcards([...flashcards, ...newCards]);
+      const text = notesText.trim();
+      if (!text) {
+        alert("Please enter some notes to convert");
+        return;
+      }
+
+      let newCards = [];
+      
+      // Try different parsing strategies
+      const lines = text.split('\n').filter(line => line.trim());
+      
+      for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+        
+        let term = '';
+        let definition = '';
+        
+        // Strategy 1: Look for common separators (: - = |)
+        const separators = [':', ' - ', ' = ', ' | ', '\t'];
+        let found = false;
+        
+        for (let sep of separators) {
+          if (line.includes(sep)) {
+            const parts = line.split(sep);
+            if (parts.length >= 2) {
+              term = parts[0].trim();
+              definition = parts.slice(1).join(sep).trim();
+              found = true;
+              break;
+            }
+          }
+        }
+        
+        // Strategy 2: Look for bullet points or numbers
+        if (!found) {
+          const bulletMatch = line.match(/^[\d\w\-\*\•]\s*[\.\)\-\s]\s*(.+)/);
+          if (bulletMatch) {
+            const content = bulletMatch[1];
+            // Try to split the content
+            for (let sep of separators) {
+              if (content.includes(sep)) {
+                const parts = content.split(sep);
+                if (parts.length >= 2) {
+                  term = parts[0].trim();
+                  definition = parts.slice(1).join(sep).trim();
+                  found = true;
+                  break;
+                }
+              }
+            }
+          }
+        }
+        
+        // Strategy 3: Look for parentheses (Term (definition))
+        if (!found) {
+          const parenMatch = line.match(/^([^(]+)\s*\(([^)]+)\)$/);
+          if (parenMatch) {
+            term = parenMatch[1].trim();
+            definition = parenMatch[2].trim();
+            found = true;
+          }
+        }
+        
+        // Strategy 4: Look for quotes ("Term" definition)
+        if (!found) {
+          const quoteMatch = line.match(/^["']([^"']+)["']\s*(.+)$/);
+          if (quoteMatch) {
+            term = quoteMatch[1].trim();
+            definition = quoteMatch[2].trim();
+            found = true;
+          }
+        }
+        
+        // Strategy 5: If line is long enough, try to split in half
+        if (!found && line.length > 20) {
+          const words = line.split(' ');
+          if (words.length >= 4) {
+            const midPoint = Math.floor(words.length / 2);
+            term = words.slice(0, midPoint).join(' ').trim();
+            definition = words.slice(midPoint).join(' ').trim();
+            found = true;
+          }
+        }
+        
+        if (found && term && definition && term.length > 0 && definition.length > 0) {
+          // Clean up the term and definition
+          term = term.replace(/^[\d\w\-\*\•]\s*[\.\)\-\s]*/, '').trim();
+          definition = definition.replace(/^[\-\s]*/, '').trim();
+          
+          if (term && definition) {
+            newCards.push({ term, definition });
+          }
+        }
+      }
+      
+      if (newCards.length === 0) {
+        alert(`Could not parse any flashcards from your notes. Try using formats like:
+        
+• Term: Definition
+• Term - Definition  
+• Term = Definition
+• 1. Term: Definition
+• "Term" Definition
+• Term (Definition)`);
+        return;
+      }
+      
+      // Replace existing flashcards if they're empty, otherwise add to them
+      const hasEmptyCards = flashcards.some(card => !card.term.trim() && !card.definition.trim());
+      if (hasEmptyCards) {
+        setFlashcards(newCards);
+      } else {
+        setFlashcards([...flashcards, ...newCards]);
+      }
+      
       setShowNotesModal(false);
       setNotesText("");
+      
+      // Show success message
+      alert(`Successfully created ${newCards.length} flashcard${newCards.length === 1 ? '' : 's'} from your notes!`);
+      
     } catch (err) {
-      alert("Could not parse notes. Use format like 'Term: Definition'");
+      console.error('Error parsing notes:', err);
+      alert("Could not parse notes. Please check the format and try again.");
     }
   };
 
@@ -230,27 +341,62 @@ const CreateStudySet = () => {
       </form>
 
       {showNotesModal && (
-        <div className={styles.modal}>
-          <h3>Create from Notes</h3>
-          <textarea
-            className={styles.textArea}
-            placeholder="One note per line. Example: Gravity: A force that attracts..."
-            value={notesText}
-            onChange={(e) => setNotesText(e.target.value)}
-          />
-          <button
-            onClick={handleCreateFromNotes}
-            className={styles.greenButton}
-          >
-            Convert to Flashcards
-          </button>
-          <button
-            onClick={() => setShowNotesModal(false)}
-            className={styles.cancelButton}
-          >
-            Cancel
-          </button>
-        </div>
+        <>
+          <div className={styles.modalOverlay} onClick={() => setShowNotesModal(false)} />
+          <div className={styles.modal}>
+            <h3>🚀 Create from Notes</h3>
+            <p className={styles.modalDescription}>
+              Paste your notes below and we'll automatically convert them into flashcards! 
+              We support multiple formats:
+            </p>
+            <div className={styles.formatExamples}>
+              <div className={styles.formatExample}>
+                <strong>Colon format:</strong> Term: Definition
+              </div>
+              <div className={styles.formatExample}>
+                <strong>Dash format:</strong> Term - Definition
+              </div>
+              <div className={styles.formatExample}>
+                <strong>Numbered:</strong> 1. Term: Definition
+              </div>
+              <div className={styles.formatExample}>
+                <strong>Bullet points:</strong> • Term: Definition
+              </div>
+              <div className={styles.formatExample}>
+                <strong>Parentheses:</strong> Term (Definition)
+              </div>
+            </div>
+            <textarea
+              className={styles.textArea}
+              placeholder={`Paste your notes here! Examples:
+
+Photosynthesis: The process by which plants make food from sunlight
+Mitochondria - The powerhouse of the cell
+1. DNA: Deoxyribonucleic acid that carries genetic information
+• RNA: Ribonucleic acid involved in protein synthesis
+Nucleus (The control center of the cell)
+
+We'll automatically detect the format and create flashcards for you!`}
+              value={notesText}
+              onChange={(e) => setNotesText(e.target.value)}
+            />
+            <div className={styles.modalButtons}>
+              <button
+                onClick={handleCreateFromNotes}
+                className={styles.greenButton}
+                disabled={!notesText.trim()}
+              >
+                ✨ Convert to Flashcards
+              </button>
+              <button
+                onClick={() => setShowNotesModal(false)}
+                className={styles.cancelButton}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
