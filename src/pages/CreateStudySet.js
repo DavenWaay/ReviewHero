@@ -18,6 +18,9 @@ const CreateStudySet = () => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [showNotesModal, setShowNotesModal] = useState(false);
+  const [notesText, setNotesText] = useState("");
+
   const handleFlashcardChange = (index, field, value) => {
     const updatedFlashcards = [...flashcards];
     updatedFlashcards[index][field] = value;
@@ -28,24 +31,44 @@ const CreateStudySet = () => {
     setFlashcards([...flashcards, { term: "", definition: "" }]);
   };
 
-  const removeFlashcard = useCallback((index) => {
-    if (window.confirm('Are you sure you want to delete this flashcard?')) {
-      const updatedFlashcards = flashcards.filter((_, i) => i !== index);
-      setFlashcards(updatedFlashcards);
+  const removeFlashcard = useCallback(
+    (index) => {
+      if (window.confirm("Are you sure you want to delete this flashcard?")) {
+        const updatedFlashcards = flashcards.filter((_, i) => i !== index);
+        setFlashcards(updatedFlashcards);
+      }
+    },
+    [flashcards]
+  );
+
+  const handleCreateFromNotes = () => {
+    try {
+      const lines = notesText.trim().split("\n");
+      const newCards = lines
+        .map((line) => {
+          const parts = line.split(/:|-/);
+          const term = parts[0]?.trim();
+          const definition = parts.slice(1).join(":").trim();
+          return { term, definition };
+        })
+        .filter((card) => card.term && card.definition);
+      setFlashcards([...flashcards, ...newCards]);
+      setShowNotesModal(false);
+      setNotesText("");
+    } catch (err) {
+      alert("Could not parse notes. Use format like 'Term: Definition'");
     }
-  }, [flashcards]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    
-    // Validate inputs
+
     if (!title.trim()) {
       setError("Title is required");
       return;
     }
 
-    // Validate minimum number of cards
     const validCards = flashcards.filter(
       (card) => card.term.trim() !== "" && card.definition.trim() !== ""
     );
@@ -59,9 +82,7 @@ const CreateStudySet = () => {
       await flashcardAPI.create({
         title: title.trim(),
         description: description.trim(),
-        cards: flashcards.filter(
-          (card) => card.term.trim() !== "" && card.definition.trim() !== ""
-        ),
+        cards: validCards,
       });
       setIsSubmitting(false);
       navigate("/studysets");
@@ -76,16 +97,14 @@ const CreateStudySet = () => {
     const initUser = async () => {
       if (!loading) {
         if (!user) {
-          navigate('/login');
+          navigate("/login");
         } else {
           try {
-            // Get Firebase ID token
             const idToken = await user.getIdToken();
-            // Call backend login endpoint to ensure user exists in MongoDB
             await authAPI.login(idToken);
           } catch (error) {
-            console.error('Error initializing user:', error);
-            setError('Error initializing user. Please try logging in again.');
+            console.error("Error initializing user:", error);
+            setError("Error initializing user. Please try logging in again.");
           }
         }
       }
@@ -106,8 +125,8 @@ const CreateStudySet = () => {
     <div className={styles.container}>
       <h2 className={styles.header}>
         Create New Flashcard Set
-        <button 
-          className={styles.closeButton} 
+        <button
+          className={styles.closeButton}
           title="Close"
           onClick={() => navigate(-1)}
         >
@@ -131,32 +150,18 @@ const CreateStudySet = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <div className={styles.buttonGroup}>
-          <button 
-            type="button" 
+          <button
+            type="button"
             className={styles.greenButton}
-            onClick={() => alert('Import feature coming soon!')}
-          >
-            <FaPlus /> Import
-          </button>
-          <button 
-            type="button" 
-            className={styles.greenButton}
-            onClick={() => alert('Add Picture feature coming soon!')}
-          >
-            <FaPlus /> Add Picture
-          </button>
-          <button 
-            type="button" 
-            className={styles.greenButton}
-            onClick={() => alert('Create from Notes feature coming soon!')}
+            onClick={() => setShowNotesModal(true)}
           >
             <FaPlus /> Create from Notes
           </button>
-          <button 
-            type="button" 
-            className={styles.settingsButton} 
+          <button
+            type="button"
+            className={styles.settingsButton}
             title="Settings"
-            onClick={() => alert('Settings feature coming soon!')}
+            onClick={() => alert("Settings feature coming soon!")}
           >
             <FaCog />
           </button>
@@ -166,11 +171,11 @@ const CreateStudySet = () => {
             <div className={styles.flashcardHeader}>
               <span>{index + 1}</span>
               <div>
-                <button 
-                  type="button" 
-                  className={styles.iconButton} 
+                <button
+                  type="button"
+                  className={styles.iconButton}
                   title="Share"
-                  onClick={() => alert('Share feature coming soon!')}
+                  onClick={() => alert("Share feature coming soon!")}
                 >
                   <FaShareAlt />
                 </button>
@@ -190,7 +195,9 @@ const CreateStudySet = () => {
                 placeholder="Enter a Term"
                 className={styles.termInput}
                 value={card.term}
-                onChange={(e) => handleFlashcardChange(index, "term", e.target.value)}
+                onChange={(e) =>
+                  handleFlashcardChange(index, "term", e.target.value)
+                }
               />
               <input
                 type="text"
@@ -213,10 +220,38 @@ const CreateStudySet = () => {
           <FaPlus /> Add Card
         </button>
         {error && <div className={styles.error}>{error}</div>}
-        <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={styles.submitButton}
+        >
           {isSubmitting ? "Creating..." : "Create Study Set"}
         </button>
       </form>
+
+      {showNotesModal && (
+        <div className={styles.modal}>
+          <h3>Create from Notes</h3>
+          <textarea
+            className={styles.textArea}
+            placeholder="One note per line. Example: Gravity: A force that attracts..."
+            value={notesText}
+            onChange={(e) => setNotesText(e.target.value)}
+          />
+          <button
+            onClick={handleCreateFromNotes}
+            className={styles.greenButton}
+          >
+            Convert to Flashcards
+          </button>
+          <button
+            onClick={() => setShowNotesModal(false)}
+            className={styles.cancelButton}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
     </div>
   );
 };
