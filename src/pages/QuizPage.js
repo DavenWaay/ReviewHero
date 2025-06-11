@@ -57,12 +57,12 @@ const QuizPage = () => {
               "Heneral Luna", 
               "Juan Luna"
             ];
-            const allOptions = [card.definition, ...fakeOptions];
+            const allOptions = [card.term, ...fakeOptions];
             
             return {
-              question: card.term,
+              question: card.definition,
               options: shuffleOptions(allOptions),
-              answer: card.definition
+              answer: card.term
             };
           });
           setQuestions(quizQuestions);
