@@ -19,12 +19,15 @@ const SideBar = () => {
       <nav className={styles.links}>
         <ul>
           <li>
+            
             <NavLink 
               to="/landing" 
               className={({ isActive }) => 
                 `${styles.link} ${isActive ? styles.activeLink : ""}`
               }
             >
+            < i class='bx  bx-home'  ></i> 
+              
               Home
             </NavLink>
           </li>
@@ -35,6 +38,7 @@ const SideBar = () => {
                 `${styles.link} ${isActive ? styles.activeLink : ""}`
               }
             >
+           < i class='bx  bx-folder-open'  ></i> 
               Study Sets
             </NavLink>
           </li>
@@ -45,6 +49,7 @@ const SideBar = () => {
                 `${styles.link} ${isActive ? styles.activeLink : ""}`
               }
             >
+            < i class='bx  bx-book-alt'  ></i> 
               Library
             </NavLink>
           </li>
@@ -56,6 +61,7 @@ const SideBar = () => {
                 `${styles.link} ${isActive ? styles.activeLink : ""}`
               }
             >
+            < i class='bx  bx-trophy'  ></i> 
               Achievements
             </NavLink>
           </li>

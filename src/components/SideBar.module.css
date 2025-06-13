@@ -24,7 +24,7 @@
     gap: 10px;
     font-size: 20px;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .logo img {
@@ -57,7 +57,7 @@
     font-weight: 500;
     padding: 17px;
     border-radius: 2px;
-    background-color: rgb(182, 243, 190); 
+    background-color: rgb(255, 234, 129); 
     transition: background 0.3s ease, color 0.3s ease;
     width: 90%;            
     justify-content: flex-start; 
@@ -69,13 +69,13 @@
 
 /* Hover state */
 .link:hover {
-    background-color: #27ae60;
+    background-color: var(--primary-color);
     color: white;
 }
 
 /*  Active link style */
 .activeLink {
-    background-color:rgb(7, 180, 79); 
+    background-color:var(--primary-color); 
     color: white;
 }
   
@@ -85,7 +85,7 @@
 }
 
 .createButton {
-    background-color: #27ae60;
+    background-color:var(--primary-color);
     color: white;
     font-size: 16px;
     padding: 12px;
@@ -94,12 +94,13 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-left:20px;
     margin-top: auto;
 }
 
 .createButton:hover {
-    background-color: #219150;
+    background-color: rgb(219, 82, 2);
 }
 
 /* Mobile Responsiveness */

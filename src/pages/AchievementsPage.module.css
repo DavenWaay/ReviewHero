@@ -49,7 +49,7 @@
 }
 
 .achievementCard.completed {
-  border: 2px solid #27ae60;
+  border: 2px solid rgb(255, 115, 0);
 }
 
 .achievementIcon {
@@ -65,7 +65,7 @@
 
 .achievementIcon i {
   font-size: 1.8rem;
-  color: #27ae60;
+  color: rgb(233, 132, 49);
 }
 
 .achievementInfo h3 {
@@ -93,7 +93,7 @@
 
 .progressFill {
   height: 100%;
-  background: #27ae60;
+  background: linear-gradient(to right, rgb(255, 115, 0), rgb(255, 234, 129));
   transition: width 0.3s ease;
 }
 
@@ -110,7 +110,7 @@
 }
 
 .xp {
-  color: #27ae60;
+  color: rgb(255, 81, 0);
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -149,7 +149,7 @@
 .statNumber {
   font-size: 2rem;
   font-weight: bold;
-  color: #27ae60;
+  color:rgb(255, 115, 0);
   margin-bottom: 0.25rem;
 }
 
@@ -164,7 +164,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #27ae60;
+  background:rgb(255, 115, 0);
   color: white;
   width: 30px;
   height: 30px;

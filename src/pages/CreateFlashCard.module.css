@@ -50,7 +50,7 @@
 
 /*Create Flashcard*/
 .content {
-  background: #4caf50;
+  background: rgb(255, 115, 0);
   height: 550px;
   margin-top: 80px;
   display: flex;

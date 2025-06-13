@@ -1,7 +1,7 @@
 .container {
     display: flex;
     min-height: 100vh;
-    background-color: #3a7d44;
+    background-color: rgb(255, 115, 0);
     padding: 0;
     gap: 0;
 }
@@ -39,7 +39,7 @@
 }
 
 .signupButton {
-    background-color: #3a7d44;
+    background-color: rgb(255, 115, 0);
     color: white;
     border: none;
     padding: 12px;
@@ -53,7 +53,7 @@
 }
 
 .signupButton:hover:not(:disabled) {
-    background-color: #2d5f35;
+    background-color: rgb(206, 93, 1);
 }
 
 .signupButton:disabled {
@@ -68,7 +68,7 @@
 }
 
 .signupForm a {
-    color: #3a7d44;
+    color: rgb(255, 115, 0);
     text-decoration: none;
     font-weight: bold;
 }

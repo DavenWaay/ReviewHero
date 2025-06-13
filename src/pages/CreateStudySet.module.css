@@ -53,7 +53,7 @@
 }
 
 .inputField:focus {
-    border-color: #3a7d44;
+    border-color:rgb(255, 115, 0);
     outline: none;
     box-shadow: 0 4px 8px rgba(58, 125, 68, 0.1);
     transform: translateY(-1px);
@@ -71,7 +71,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background-color: #3a7d44;
+    background-color: rgb(255, 115, 0);
     color: white;
     border: none;
     border-radius: 12px;
@@ -82,7 +82,7 @@
 }
 
 .greenButton:hover {
-    background-color: #2d5f35;
+    background-color:rgb(218, 100, 5);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(58, 125, 68, 0.3);
 }
@@ -121,14 +121,14 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(45deg, #3a7d44, #2d5f35);
+    background: linear-gradient(to right, rgb(255, 115, 0), rgb(255, 123, 0));;
     transition: width 0.3s ease;
 }
 
 .flashcardItem:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
-    border-color: #3a7d44;
+    border-color:rgb(255, 115, 0);
 }
 
 .flashcardItem:hover::before {
@@ -145,7 +145,7 @@
 }
 
 .flashcardHeader span {
-    background: linear-gradient(45deg, #3a7d44, #2d5f35);
+    background: linear-gradient(to right, rgb(255, 115, 0), rgb(228, 137, 2));;
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -209,9 +209,9 @@
     width: 100%;
     padding: 1.25rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 2px dashed #3a7d44;
+    border: 2px dashed rgb(255, 115, 0);
     border-radius: 16px;
-    color: #3a7d44;
+    color: rgb(255, 115, 0);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -254,7 +254,7 @@
 
 .submitButton {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #3a7d44 0%, #2d5f35 100%);
+    background: linear-gradient(to right, rgb(255, 115, 0), rgb(236, 197, 2));;
     color: white;
     border: none;
     border-radius: 12px;

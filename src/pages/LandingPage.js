@@ -79,16 +79,20 @@ const LandingPage = () => {
 
         {/* Welcome Card Animation */}
         <motion.div
-          className={styles.welcomeCard}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+        className={styles.welcomeCard}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
         >
+        <div className={styles.welcomeText}>
           <span>Welcome!</span>
           <h1>
             {user ? `Ready to Study, ${user.displayName || user.email?.split('@')[0] || 'User'}?` : 'Ready to Start Learning?'}
           </h1>
-        </motion.div>
+        </div>
+        <img src="/thumbsup.png" alt="Thumbs up" />
+      </motion.div>
+
 
         {error && (
           <motion.div 

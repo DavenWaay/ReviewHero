@@ -34,7 +34,7 @@
   }
   
   .backButton {
-    background: #4caf50;
+    background:rgb(255, 115, 0);
     color: white;
     border: none;
     border-radius: 15px;
@@ -46,7 +46,7 @@
   }
   
   .backButton:hover {
-    background: #388e3c;
+    background:rgb(209, 84, 0);
   }
   
   .hr {
@@ -76,7 +76,7 @@
   
   .progressFill {
     height: 100%;
-    background-color: #4caf50;
+    background-color: rgb(255, 115, 0);
     width: 0%;
     transition: width 0.5s ease-in-out;
   }
@@ -135,7 +135,7 @@
   }
   
   .btnGreen {
-    background: #4caf50;
+    background: rgb(255, 115, 0);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -149,7 +149,7 @@
   }
   
   .btnGreen:hover {
-    background: #388e3c;
+    background:rgb(202, 91, 0);
   }
   
   .correct {

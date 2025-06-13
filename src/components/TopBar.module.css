@@ -7,7 +7,7 @@
     justify-content: space-between;
     padding: 10px 20px;
     background-color: var(--accent-color);
-    width: 80%;
+    width: 80.5%;
     box-sizing: border-box;
     position: fixed;
     top: 0;
@@ -16,16 +16,25 @@
     z-index: 1000; /* Ensures it's above other elements */
 }
 
-/* Search Bar */
-.searchInput {
-    flex: 1; /* Allows it to take up available space */
-    max-width: 300px; /* Prevents it from stretching too much */
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
+.searchWrapper {
+  position: relative;
+  width: 250px; /* or your preferred width */
+  height: 40px;
 }
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  padding: 10px 38px 10px 12px; /* space on right for icon */
+  border: 1px solid #ccc;
+  border-radius: 20px; /* for pill-like look */
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+
+
 
 /* Profile Section */
 .profile {

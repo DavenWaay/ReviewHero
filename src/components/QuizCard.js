@@ -21,24 +21,42 @@ const QuizCard = ({ title, description, author, items, setId }) => {
 
   return (
     <div className={styles.cardContainer}>
+      <div className={styles.background} />
+
+      {/* Wavy SVG */}
+      <svg
+        viewBox="0 0 500 100"
+        preserveAspectRatio="none"
+        className={styles.svgWave}
+      >
+        <path d="M0,40 C150,80 350,0 500,40 L500,100 L0,100 Z" fill="white" />
+      </svg>
+
       <div className={styles.top}>
         <span>{items} Items</span>
-        <i class='bx bxs-star'></i>
+        <i className="bx bxs-star"></i>
       </div>
 
       <div className={styles.mainContent}>
         <h3>{title}</h3>
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
         <p>Created by: {author}</p>
       </div>
+
       <div className={styles.bottom}>
-        <button className={styles.btnGreenF} onClick={handleFlashClick}>Flashcard</button>
-        <button className={styles.btnGreenL} onClick={handleLearnClick}>Learn</button>
+        <button className={styles.btnGreenF} onClick={handleFlashClick}>
+          Flashcard
+        </button>
+        <button className={styles.btnGreenL} onClick={handleLearnClick}>
+          Learn
+        </button>
         <button className={styles.btnGreenQ} onClick={handleQuizClick}>
           Quiz
         </button>
       </div>
     </div>
+
+
   );
 };
 

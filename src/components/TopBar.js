@@ -27,7 +27,15 @@ const TopBar = () => {
 
     return (
         <div className={styles.topBar}>
-            <input type="text" placeholder="Search..." className={styles.searchInput} />
+            <div className={styles.searchWrapper}>
+            <input
+                type="text"
+                placeholder="Find a quiz"
+                className={styles.searchInput}
+            />
+            </div>
+
+
             <div className={styles.profile}>
                 {user ? (
                     <>
